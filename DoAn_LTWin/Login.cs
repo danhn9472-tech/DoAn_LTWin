@@ -21,10 +21,10 @@ namespace DoAn_LTWin
         
         private void Login_Load(object sender, EventArgs e)
         {
-            SetPlaceholder(txtUser, "Nhập tên đăng nhập:");
-            SetPlaceholder(txtPass, "Nhập mật khẩu:");
+            SetPlaceholder(txtUser, "Nhập tên đăng nhập:",false);
+            SetPlaceholder(txtPass, "Nhập mật khẩu:",true);
         }
-        private void SetPlaceholder(TextBox tb, string placeholder)
+        private void SetPlaceholder(TextBox tb, string placeholder,bool isPassword)
         {
             tb.Text = placeholder;
             tb.ForeColor = Color.Gray;
@@ -35,6 +35,10 @@ namespace DoAn_LTWin
                 {
                     tb.Text = "";
                     tb.ForeColor = Color.Black;
+                    if(isPassword)
+                    {
+                        tb.PasswordChar='*';
+                    }
                 }
             };
 
@@ -44,6 +48,10 @@ namespace DoAn_LTWin
                 {
                     tb.Text = placeholder;
                     tb.ForeColor = Color.Gray;
+                    if(isPassword)
+                    {
+                        tb.PasswordChar = '\0';
+                    }
                 }
             };
         }
