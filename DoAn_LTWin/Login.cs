@@ -55,5 +55,12 @@ namespace DoAn_LTWin
                 }
             };
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            mainMenu mainMenu = new mainMenu();
+            mainMenu.Show();
+            this.Hide();
+        }
     }
 }
