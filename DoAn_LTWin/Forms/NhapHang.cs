@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DoAn_LTWin
+namespace DoAn_LTWin.Forms
 {
-    public partial class QuanLy_KhachHang : Form
+    public partial class NhapHang : Form
     {
-        public QuanLy_KhachHang()
+        public NhapHang()
         {
             InitializeComponent();
         }

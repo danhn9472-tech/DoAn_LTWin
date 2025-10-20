@@ -8,13 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DoAn_LTWin
+namespace DoAn_LTWin.Forms
 {
-    public partial class QuanLy_NCC : Form
+    public partial class BanHang : Form
     {
-        public QuanLy_NCC()
+        public BanHang()
         {
             InitializeComponent();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

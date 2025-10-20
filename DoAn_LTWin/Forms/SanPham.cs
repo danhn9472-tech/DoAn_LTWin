@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DoAn_LTWin
+namespace DoAn_LTWin.Forms
 {
-    public partial class QuanLy_SanPham : Form
+    public partial class SanPham : Form
     {
-        public QuanLy_SanPham()
+        public SanPham()
         {
             InitializeComponent();
         }
