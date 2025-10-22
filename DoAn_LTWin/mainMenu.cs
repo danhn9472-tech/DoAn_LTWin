@@ -14,7 +14,7 @@ namespace DoAn_LTWin
     {
         private Button currentButton;
         private int tempIndex;
-        private Form activeForm;
+        public Form activeForm;
         public mainMenu()
         {
             InitializeComponent();
@@ -46,7 +46,7 @@ namespace DoAn_LTWin
                 }
             }
         }
-        private void openChildForm(Form childForm, object btnSender)
+        public void openChildForm(Form childForm, object btnSender)
         {
             if (activeForm != null)
             {
@@ -61,7 +61,21 @@ namespace DoAn_LTWin
             this.panelDesktop.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
-            
+        }
+        public void openChildForm1(Form childForm, object btnSender)
+        {
+            if (activeForm != null)
+            {
+                activeForm.Hide(); 
+            }
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            panelDesktop.Controls.Add(childForm);
+            panelDesktop.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
         }
         private void btnTrangChu_Click(object sender, EventArgs e)
         {
@@ -73,17 +87,17 @@ namespace DoAn_LTWin
         }
         private void btnBanHang_Click(object sender, EventArgs e)
         {
-            openChildForm(new Forms.BanHang(), sender);
+            openChildForm(new Forms.BanHang(this), sender);
         }
 
         private void btnSanPham_Click(object sender, EventArgs e)
         {
-            openChildForm(new Forms.SanPham(), sender);
+            openChildForm(new Forms.SanPham(this), sender);
         }
 
-        private void btnNhapHang_Click(object sender, EventArgs e)
+        private void btnThongKe_Click(object sender, EventArgs e)
         {
-            openChildForm(new Forms.NhapHang(), sender);
+            openChildForm(new Forms.ThongKe(), sender);
         }
 
         private void btnNhanVien_Click(object sender, EventArgs e)

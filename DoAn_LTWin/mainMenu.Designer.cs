@@ -33,7 +33,7 @@
             this.btnTrangChu = new System.Windows.Forms.Button();
             this.btnBanHang = new System.Windows.Forms.Button();
             this.btnSanPham = new System.Windows.Forms.Button();
-            this.btnNhapHang = new System.Windows.Forms.Button();
+            this.btnThongKe = new System.Windows.Forms.Button();
             this.btnNhanVien = new System.Windows.Forms.Button();
             this.btnKhachHang = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
@@ -58,7 +58,7 @@
             this.panelMenu.Controls.Add(this.btnTrangChu);
             this.panelMenu.Controls.Add(this.btnBanHang);
             this.panelMenu.Controls.Add(this.btnSanPham);
-            this.panelMenu.Controls.Add(this.btnNhapHang);
+            this.panelMenu.Controls.Add(this.btnThongKe);
             this.panelMenu.Controls.Add(this.btnNhanVien);
             this.panelMenu.Controls.Add(this.btnKhachHang);
             this.panelMenu.Controls.Add(this.btnLogOut);
@@ -122,23 +122,23 @@
             this.btnSanPham.UseVisualStyleBackColor = false;
             this.btnSanPham.Click += new System.EventHandler(this.btnSanPham_Click);
             // 
-            // btnNhapHang
+            // btnThongKe
             // 
-            this.btnNhapHang.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(78)))));
-            this.btnNhapHang.FlatAppearance.BorderSize = 0;
-            this.btnNhapHang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNhapHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNhapHang.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnNhapHang.Image = ((System.Drawing.Image)(resources.GetObject("btnNhapHang.Image")));
-            this.btnNhapHang.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNhapHang.Location = new System.Drawing.Point(3, 177);
-            this.btnNhapHang.Name = "btnNhapHang";
-            this.btnNhapHang.Size = new System.Drawing.Size(160, 52);
-            this.btnNhapHang.TabIndex = 4;
-            this.btnNhapHang.Text = "        Nhập Hàng";
-            this.btnNhapHang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNhapHang.UseVisualStyleBackColor = false;
-            this.btnNhapHang.Click += new System.EventHandler(this.btnNhapHang_Click);
+            this.btnThongKe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(78)))));
+            this.btnThongKe.FlatAppearance.BorderSize = 0;
+            this.btnThongKe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThongKe.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThongKe.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnThongKe.Image = ((System.Drawing.Image)(resources.GetObject("btnThongKe.Image")));
+            this.btnThongKe.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThongKe.Location = new System.Drawing.Point(3, 177);
+            this.btnThongKe.Name = "btnThongKe";
+            this.btnThongKe.Size = new System.Drawing.Size(160, 52);
+            this.btnThongKe.TabIndex = 4;
+            this.btnThongKe.Text = "        Thống kê";
+            this.btnThongKe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThongKe.UseVisualStyleBackColor = false;
+            this.btnThongKe.Click += new System.EventHandler(this.btnThongKe_Click);
             // 
             // btnNhanVien
             // 
@@ -316,14 +316,14 @@
         private System.Windows.Forms.Button btnSanPham;
         private System.Windows.Forms.Button btnKhachHang;
         private System.Windows.Forms.Button btnLogOut;
-        private System.Windows.Forms.Button btnNhapHang;
+        private System.Windows.Forms.Button btnThongKe;
         private System.Windows.Forms.Button btnNhanVien;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblName_NV;
         private System.Windows.Forms.Label label1; 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panelDesktop;
+        public System.Windows.Forms.Panel panelDesktop;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
     }

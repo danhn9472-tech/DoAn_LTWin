@@ -10,24 +10,23 @@ using System.Windows.Forms;
 
 namespace DoAn_LTWin.Forms
 {
-    public partial class BanHang : Form
+    public partial class NhaCungCap : Form
     {
         private mainMenu menu;
-        public BanHang(mainMenu main)
+        public NhaCungCap(mainMenu main)
         {
             InitializeComponent();
             this.menu = main;
-
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-
+            menu.openChildForm1(new Forms.NhapSanPham(menu), sender);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-           menu.openChildForm1(new Forms.ThanhToan(),sender);
+            menu.openChildForm1(new Forms.SanPham(menu), sender);
         }
     }
 }

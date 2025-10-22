@@ -10,24 +10,18 @@ using System.Windows.Forms;
 
 namespace DoAn_LTWin.Forms
 {
-    public partial class BanHang : Form
+    public partial class CT_PhieuNhap : Form
     {
         private mainMenu menu;
-        public BanHang(mainMenu main)
+        public CT_PhieuNhap(mainMenu main)
         {
             InitializeComponent();
             this.menu = main;
-
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnChiTiet_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-           menu.openChildForm1(new Forms.ThanhToan(),sender);
+            menu.openChildForm1(new Forms.NhapSanPham(menu), sender);
         }
     }
 }

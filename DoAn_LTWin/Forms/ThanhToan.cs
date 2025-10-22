@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DoAn_LTWin.Forms
 {
-    public partial class NhapHang : Form
+    public partial class ThanhToan : Form
     {
-        public NhapHang()
+        public ThanhToan()
         {
             InitializeComponent();
         }
