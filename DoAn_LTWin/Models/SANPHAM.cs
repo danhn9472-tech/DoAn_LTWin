@@ -12,6 +12,7 @@ namespace DoAn_LTWin.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SANPHAM()
         {
+            CHITIETHOADONs = new HashSet<CHITIETHOADON>();
             CHITIETPHIEUNHAPs = new HashSet<CHITIETPHIEUNHAP>();
         }
 
@@ -33,11 +34,14 @@ namespace DoAn_LTWin.Models
         [StringLength(12)]
         public string MaNCC { get; set; }
 
-        [StringLength(50)]
+        [StringLength(100)]
         public string Avatar { get; set; }
 
-        [StringLength(50)]
+        [StringLength(20)]
         public string TrangThai { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CHITIETHOADON> CHITIETHOADONs { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETPHIEUNHAP> CHITIETPHIEUNHAPs { get; set; }

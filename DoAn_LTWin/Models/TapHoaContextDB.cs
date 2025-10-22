@@ -5,14 +5,16 @@ using System.Linq;
 
 namespace DoAn_LTWin.Models
 {
-    public partial class DAContextDB : DbContext
+    public partial class TapHoaContextDB : DbContext
     {
-        public DAContextDB()
-            : base("name=DAContextDB")
+        public TapHoaContextDB()
+            : base("name=TapHoaContextDB")
         {
         }
 
+        public virtual DbSet<CHITIETHOADON> CHITIETHOADONs { get; set; }
         public virtual DbSet<CHITIETPHIEUNHAP> CHITIETPHIEUNHAPs { get; set; }
+        public virtual DbSet<HOADON> HOADONs { get; set; }
         public virtual DbSet<KHACHHANG> KHACHHANGs { get; set; }
         public virtual DbSet<NHACUNGCAP> NHACUNGCAPs { get; set; }
         public virtual DbSet<NHANVIEN> NHANVIENs { get; set; }
@@ -21,6 +23,25 @@ namespace DoAn_LTWin.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<CHITIETHOADON>()
+                .Property(e => e.MaCTHD)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CHITIETHOADON>()
+                .Property(e => e.MaHD)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CHITIETHOADON>()
+                .Property(e => e.MaSP)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CHITIETHOADON>()
+                .Property(e => e.DonGia)
+                .HasPrecision(10, 2);
+
             modelBuilder.Entity<CHITIETPHIEUNHAP>()
                 .Property(e => e.MaCTPN)
                 .IsFixedLength()
@@ -40,17 +61,36 @@ namespace DoAn_LTWin.Models
                 .Property(e => e.DonGiaNhap)
                 .HasPrecision(10, 2);
 
+            modelBuilder.Entity<HOADON>()
+                .Property(e => e.MaHD)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<HOADON>()
+                .Property(e => e.MaKH)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<HOADON>()
+                .Property(e => e.MaNV)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<HOADON>()
+                .Property(e => e.TongTien)
+                .HasPrecision(12, 2);
+
             modelBuilder.Entity<KHACHHANG>()
                 .Property(e => e.MaKH)
                 .IsFixedLength()
                 .IsUnicode(false);
 
             modelBuilder.Entity<KHACHHANG>()
-                .Property(e => e.SDT)
+                .Property(e => e.Email)
                 .IsUnicode(false);
 
             modelBuilder.Entity<KHACHHANG>()
-                .Property(e => e.Email)
+                .Property(e => e.DiaChi)
                 .IsUnicode(false);
 
             modelBuilder.Entity<NHACUNGCAP>()
@@ -59,11 +99,11 @@ namespace DoAn_LTWin.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<NHACUNGCAP>()
-                .Property(e => e.SDT)
+                .Property(e => e.Email)
                 .IsUnicode(false);
 
             modelBuilder.Entity<NHACUNGCAP>()
-                .Property(e => e.Email)
+                .Property(e => e.DiaChi)
                 .IsUnicode(false);
 
             modelBuilder.Entity<NHANVIEN>()
@@ -72,11 +112,27 @@ namespace DoAn_LTWin.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<NHANVIEN>()
-                .Property(e => e.SDT)
+                .Property(e => e.GioiTinh)
                 .IsUnicode(false);
 
             modelBuilder.Entity<NHANVIEN>()
                 .Property(e => e.Email)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<NHANVIEN>()
+                .Property(e => e.DiaChi)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<NHANVIEN>()
+                .Property(e => e.ChucVu)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<NHANVIEN>()
+                .Property(e => e.TaiKhoan)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<NHANVIEN>()
+                .Property(e => e.MatKhau)
                 .IsUnicode(false);
 
             modelBuilder.Entity<PHIEUNHAP>()
@@ -104,6 +160,10 @@ namespace DoAn_LTWin.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<SANPHAM>()
+                .Property(e => e.DonViTinh)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SANPHAM>()
                 .Property(e => e.DonGia)
                 .HasPrecision(10, 2);
 
@@ -114,6 +174,11 @@ namespace DoAn_LTWin.Models
 
             modelBuilder.Entity<SANPHAM>()
                 .Property(e => e.Avatar)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SANPHAM>()
+                .Property(e => e.TrangThai)
                 .IsUnicode(false);
         }
     }

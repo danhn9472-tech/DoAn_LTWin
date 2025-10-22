@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DoAn_LTWin.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace DoAn_LTWin
 {
     public partial class mainMenu : Form
     {
+        public Login login;
         private Button currentButton;
         private int tempIndex;
         public Form activeForm;
@@ -20,6 +22,7 @@ namespace DoAn_LTWin
             InitializeComponent();
             btnTrangChu.BackColor = Color.FromArgb(55, 53, 62);
             btnTrangChu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblName_NV.Text = login.currentUser.TenNV;
 
         }
         private void ActiveButton(object btnSender)
