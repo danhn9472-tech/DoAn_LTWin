@@ -24,7 +24,7 @@ namespace DoAn_LTWin.Models
         [StringLength(100)]
         public string TenNCC { get; set; }
 
-        public int? SDT { get; set; }
+        public string SDT { get; set; }
 
         [StringLength(100)]
         public string Email { get; set; }

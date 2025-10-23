@@ -34,39 +34,9 @@ namespace DoAn_LTWin.Forms
             }
         }
 
-        private void loadAnh(PictureBox picBox, string avatarFileName)
+        private void loadAnh( string avatarFileName)
         {
-            if (picSanPham.Image != null)
-            {
-                picBox.Image.Dispose();
-                picBox.Image = null;
-            }
-
-            if (string.IsNullOrEmpty(avatarFileName))
-            {
-                return;
-            }
-
-            try
-            {
-                string fullPath = Path.Combine(Application.StartupPath, "Images", avatarFileName);
-
-                if (File.Exists(fullPath))
-                {
-                    using (MemoryStream ms = new MemoryStream(File.ReadAllBytes(fullPath)))
-                    {
-                        picBox.Image = Image.FromStream(ms);
-                    }
-                }
-                else
-                {
-                    System.Diagnostics.Debug.WriteLine("Không tìm thấy tệp ảnh: " + fullPath);
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Lỗi khi tải ảnh: " + ex.Message);
-            }
+            picSanPham.Image =Image.FromFile(Path.Combine(Application.StartupPath, "Images", avatarFileName.Trim() + ".jpg"));
         }
 
         private void FillNCCCombobox(List<NHACUNGCAP> listNCC)
@@ -115,7 +85,7 @@ namespace DoAn_LTWin.Forms
                 txtSoluong.Text = Convert.ToString(row.Cells[4].Value);
                 cmbNCC.Text = Convert.ToString(row.Cells[5].Value);
                 cmbTT.Text = Convert.ToString(row.Cells[6].Value);
-                loadAnh(picSanPham, txtMaSP.Text);
+                loadAnh(txtMaSP.Text);
             }
         }
 

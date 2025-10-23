@@ -1,5 +1,15 @@
-﻿ALTER DATABASE QLTAPHOA SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+﻿USE master;
+GO
+
+-- 2. "Đuổi" tất cả các kết nối khác ra
+ALTER DATABASE QLTAPHOA
+SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+GO
+
+-- 3. Bây giờ mới Xóa
 DROP DATABASE QLTAPHOA;
+GO
+
 
 
 -- Tạo Database
@@ -10,11 +20,11 @@ USE QLTAPHOA;
 GO
 
 CREATE TABLE NHANVIEN (
-    MaNV        CHAR(12) PRIMARY KEY,
+    MaNV        VARCHAR(12) PRIMARY KEY,
     TenNV       NVARCHAR(100) NOT NULL,
     GioiTinh    NVARCHAR(10),
     NgaySinh    DATE,
-    SDT         CHAR(13),
+    SDT         VARCHAR(13),
     Email       VARCHAR(100),
     DiaChi      TEXT,
     ChucVu      NVARCHAR(50),
@@ -26,9 +36,9 @@ CREATE TABLE NHANVIEN (
 
 
 CREATE TABLE KHACHHANG (
-    MaKH    CHAR(12) PRIMARY KEY ,
+    MaKH    VARCHAR(12) PRIMARY KEY ,
     TenKH   NVARCHAR(100) NOT NULL,
-    SDT     INT,
+    SDT     VARCHAR(13),
     Email   VARCHAR(100),
     DiaChi  TEXT
 );
@@ -36,31 +46,31 @@ CREATE TABLE KHACHHANG (
 
 
 CREATE TABLE NHACUNGCAP (
-    MaNCC   CHAR(12) PRIMARY KEY,
+    MaNCC   VARCHAR(12) PRIMARY KEY,
     TenNCC  NVARCHAR(100) NOT NULL,
-    SDT     INT,
+    SDT     VARCHAR(13),
     Email   VARCHAR(100),
     DiaChi  TEXT
 );
 
 
 CREATE TABLE SANPHAM (
-    MaSP        CHAR(12) PRIMARY KEY,
+    MaSP        VARCHAR(12) PRIMARY KEY,
     TenSP       NVARCHAR(100) NOT NULL,
-    DonViTinh   VARCHAR(20),
+    DonViTinh   NVARCHAR(20),
     DonGia      DECIMAL(10, 2),
     SoLuongTon  INT DEFAULT 0,
-    MaNCC       CHAR(12),
-    Avatar      CHAR(100),
+    MaNCC       VARCHAR(12),
+    Avatar      VARCHAR(100),
     TrangThai VARCHAR(20) CHECK (TrangThai IN ('Còn kinh doanh', 'Ngưng kinh doanh')) DEFAULT 'Còn kinh doanh',
     FOREIGN KEY (MaNCC) REFERENCES NHACUNGCAP(MaNCC)
 );
 
 
 CREATE TABLE HOADON (
-    MaHD        CHAR(12) PRIMARY KEY,
-    MaKH        CHAR(12),
-    MaNV        CHAR(12),
+    MaHD        VARCHAR(12) PRIMARY KEY,
+    MaKH        VARCHAR(12),
+    MaNV        VARCHAR(12),
     NgayLap     DATETIME DEFAULT CURRENT_TIMESTAMP,
     TongTien    DECIMAL(12, 2),
     FOREIGN KEY (MaKH) REFERENCES KHACHHANG(MaKH),
@@ -70,9 +80,9 @@ CREATE TABLE HOADON (
 
 
 CREATE TABLE CHITIETHOADON (
-    MaCTHD      CHAR(12) PRIMARY KEY,
-    MaHD        CHAR(12),
-    MaSP        CHAR(12),
+    MaCTHD      VARCHAR(12) PRIMARY KEY,
+    MaHD        VARCHAR(12),
+    MaSP        VARCHAR(12),
     SoLuong     INT,
     DonGia DECIMAL(10, 2),
     FOREIGN KEY (MaHD) REFERENCES HOADON(MaHD),
@@ -82,9 +92,9 @@ CREATE TABLE CHITIETHOADON (
 
 
 CREATE TABLE PHIEUNHAP (
-    MaPN        CHAR(12) PRIMARY KEY,
-    MaNCC       CHAR(12),
-    MaNV        CHAR(12),
+    MaPN        VARCHAR(12) PRIMARY KEY,
+    MaNCC       VARCHAR(12),
+    MaNV        VARCHAR(12),
     NgayNhap    DATETIME DEFAULT CURRENT_TIMESTAMP,
     TongTien    DECIMAL(12, 2),
     FOREIGN KEY (MaNCC) REFERENCES NHACUNGCAP(MaNCC),
@@ -94,9 +104,9 @@ CREATE TABLE PHIEUNHAP (
 
 
 CREATE TABLE CHITIETPHIEUNHAP (
-    MaCTPN      CHAR(12) PRIMARY KEY,
-    MaPN        CHAR(12),
-    MaSP        CHAR(12),
+    MaCTPN      VARCHAR(12) PRIMARY KEY,
+    MaPN        VARCHAR(12),
+    MaSP        VARCHAR(12),
     SoLuong     INT,
     DonGiaNhap  DECIMAL(10, 2),
     FOREIGN KEY (MaPN) REFERENCES PHIEUNHAP(MaPN),
@@ -138,49 +148,49 @@ INSERT INTO KHACHHANG VALUES ('KH020', N'Bùi Thị Quyên', '0901122334', 'quye
 
 --Nhà Cung Cấp
 
-INSERT INTO NHACUNGCAP VALUES ('NCC001', N'Vinamilk', 0901234567, 'contact@vinamilk.com.vn', N'10 Tân Cảng, Q.Bình Thạnh, TP.HCM');
-INSERT INTO NHACUNGCAP VALUES ('NCC002', N'TH True Milk', 0902345678, 'info@thmilk.vn', N'Nghĩa Đàn, Nghệ An');
-INSERT INTO NHACUNGCAP VALUES ('NCC003', N'Nestlé Việt Nam', 0903456789, 'nestle@nestle.vn', N'KCN Biên Hòa, Đồng Nai');
-INSERT INTO NHACUNGCAP VALUES ('NCC004', N'Coca-Cola Việt Nam', 0904567890, 'cocacola@coca-cola.com.vn', N'62 Trần Hưng Đạo, Q.5, TP.HCM');
-INSERT INTO NHACUNGCAP VALUES ('NCC005', N'PepsiCo Việt Nam', 0905678901, 'pepsi@pepsico.vn', N'45 Nguyễn Văn Linh, Q.7, TP.HCM');
-INSERT INTO NHACUNGCAP VALUES ('NCC006', N'Tân Hiệp Phát', 0906789012, 'thp@thp.com.vn', N'219 Quốc lộ 13, Bình Dương');
-INSERT INTO NHACUNGCAP VALUES ('NCC007', N'Orion Việt Nam', 0907890123, 'orion@orion.vn', N'56 Nguyễn Văn Cừ, Q.1, TP.HCM');
-INSERT INTO NHACUNGCAP VALUES ('NCC008', N'Kinh Đô', 0908901234, 'kinhdo@kinhdo.vn', N'25 Nguyễn Hữu Thọ, Q.7, TP.HCM');
-INSERT INTO NHACUNGCAP VALUES ('NCC009', N'Acecook Việt Nam', 0909012345, 'acecook@acecook.com.vn', N'123 Lê Trọng Tấn, Tân Phú, TP.HCM');
-INSERT INTO NHACUNGCAP VALUES ('NCC010', N'Masan Consumer', 0910123456, 'masan@masan.vn', N'1 Đinh Bộ Lĩnh, Q.Bình Thạnh, TP.HCM');
-INSERT INTO NHACUNGCAP VALUES ('NCC011', N'Ajinomoto Việt Nam', 0911234567, 'ajinomoto@ajinomoto.com.vn', N'Long Thành, Đồng Nai');
-INSERT INTO NHACUNGCAP VALUES ('NCC012', N'Vissan', 0912345678, 'vissan@vissan.com.vn', N'420 Nơ Trang Long, Q.Bình Thạnh, TP.HCM');
-INSERT INTO NHACUNGCAP VALUES ('NCC013', N'Saigon Co.op', 0913456789, 'coop@saigoncoop.com.vn', N'199 Nguyễn Thái Học, Q.1, TP.HCM');
-INSERT INTO NHACUNGCAP VALUES ('NCC014', N'Bánh kẹo Hải Hà', 0914567890, 'haiha@haiha.vn', N'25 Trần Phú, Hà Nội');
-INSERT INTO NHACUNGCAP VALUES ('NCC015', N'Dầu ăn Tường An', 0915678901, 'tuongan@tuongan.vn', N'48 Nguyễn Văn Quá, Q.12, TP.HCM');
-INSERT INTO NHACUNGCAP VALUES ('NCC016', N'Nước khoáng Lavie', 0916789012, 'lavie@lavie.vn', N'KCN Long Hậu, Long An');
-INSERT INTO NHACUNGCAP VALUES ('NCC017', N'Bánh kẹo Bibica', 0917890123, 'bibica@bibica.com.vn', N'88 Trường Chinh, Tân Bình, TP.HCM');
-INSERT INTO NHACUNGCAP VALUES ('NCC018', N'Bánh mì ABC', 0918901234, 'abc@banhmivn.vn', N'12 Nguyễn Văn Đậu, Q.Bình Thạnh, TP.HCM');
-INSERT INTO NHACUNGCAP VALUES ('NCC019', N'Giấy Sài Gòn', 0919012345, 'giay@saigonpaper.vn', N'KCN Mỹ Xuân, Bà Rịa - Vũng Tàu');
-INSERT INTO NHACUNGCAP VALUES ('NCC020', N'Colgate-Palmolive Việt Nam', 0920123456, 'colgate@colgate.vn', N'KCN VSIP, Bình Dương');
+INSERT INTO NHACUNGCAP VALUES ('NCC001', N'Vinamilk', '0901234567', 'contact@vinamilk.com.vn', N'10 Tân Cảng, Q.Bình Thạnh, TP.HCM');
+INSERT INTO NHACUNGCAP VALUES ('NCC002', N'TH True Milk', '0902345678', 'info@thmilk.vn', N'Nghĩa Đàn, Nghệ An');
+INSERT INTO NHACUNGCAP VALUES ('NCC003', N'Nestlé Việt Nam', '0903456789', 'nestle@nestle.vn', N'KCN Biên Hòa, Đồng Nai');
+INSERT INTO NHACUNGCAP VALUES ('NCC004', N'Coca-Cola Việt Nam', '0904567890', 'cocacola@coca-cola.com.vn', N'62 Trần Hưng Đạo, Q.5, TP.HCM');
+INSERT INTO NHACUNGCAP VALUES ('NCC005', N'PepsiCo Việt Nam', '0905678901', 'pepsi@pepsico.vn', N'45 Nguyễn Văn Linh, Q.7, TP.HCM');
+INSERT INTO NHACUNGCAP VALUES ('NCC006', N'Tân Hiệp Phát', '0906789012', 'thp@thp.com.vn', N'219 Quốc lộ 13, Bình Dương');
+INSERT INTO NHACUNGCAP VALUES ('NCC007', N'Orion Việt Nam', '0907890123', 'orion@orion.vn', N'56 Nguyễn Văn Cừ, Q.1, TP.HCM');
+INSERT INTO NHACUNGCAP VALUES ('NCC008', N'Kinh Đô', '0908901234', 'kinhdo@kinhdo.vn', N'25 Nguyễn Hữu Thọ, Q.7, TP.HCM');
+INSERT INTO NHACUNGCAP VALUES ('NCC009', N'Acecook Việt Nam', '0909012345', 'acecook@acecook.com.vn', N'123 Lê Trọng Tấn, Tân Phú, TP.HCM');
+INSERT INTO NHACUNGCAP VALUES ('NCC010', N'Masan Consumer', '0910123456', 'masan@masan.vn', N'1 Đinh Bộ Lĩnh, Q.Bình Thạnh, TP.HCM');
+INSERT INTO NHACUNGCAP VALUES ('NCC011', N'Ajinomoto Việt Nam', '0911234567', 'ajinomoto@ajinomoto.com.vn', N'Long Thành, Đồng Nai');
+INSERT INTO NHACUNGCAP VALUES ('NCC012', N'Vissan', '0912345678', 'vissan@vissan.com.vn', N'420 Nơ Trang Long, Q.Bình Thạnh, TP.HCM');
+INSERT INTO NHACUNGCAP VALUES ('NCC013', N'Saigon Co.op', '0913456789', 'coop@saigoncoop.com.vn', N'199 Nguyễn Thái Học, Q.1, TP.HCM');
+INSERT INTO NHACUNGCAP VALUES ('NCC014', N'Bánh kẹo Hải Hà', '0914567890', 'haiha@haiha.vn', N'25 Trần Phú, Hà Nội');
+INSERT INTO NHACUNGCAP VALUES ('NCC015', N'Dầu ăn Tường An', '0915678901', 'tuongan@tuongan.vn', N'48 Nguyễn Văn Quá, Q.12, TP.HCM');
+INSERT INTO NHACUNGCAP VALUES ('NCC016', N'Nước khoáng Lavie', '0916789012', 'lavie@lavie.vn', N'KCN Long Hậu, Long An');
+INSERT INTO NHACUNGCAP VALUES ('NCC017', N'Bánh kẹo Bibica', '0917890123', 'bibica@bibica.com.vn', N'88 Trường Chinh, Tân Bình, TP.HCM');
+INSERT INTO NHACUNGCAP VALUES ('NCC018', N'Bánh mì ABC', '0918901234', 'abc@banhmivn.vn', N'12 Nguyễn Văn Đậu, Q.Bình Thạnh, TP.HCM');
+INSERT INTO NHACUNGCAP VALUES ('NCC019', N'Giấy Sài Gòn', '0919012345', 'giay@saigonpaper.vn', N'KCN Mỹ Xuân, Bà Rịa - Vũng Tàu');
+INSERT INTO NHACUNGCAP VALUES ('NCC020', N'Colgate-Palmolive Việt Nam', '0920123456', 'colgate@colgate.vn', N'KCN VSIP, Bình Dương');
 
 --Nhập sản phẩm
 INSERT INTO SANPHAM (MaSP, TenSP, DonViTinh, DonGia, SoLuongTon, MaNCC, Avatar, TrangThai) VALUES
-('SP001', N'Sữa tươi Vinamilk 1L', 'Hộp', 29000, 120, 'NCC001', 'SP001.jpg', 'Còn kinh doanh'),
-('SP002', N'Sữa chua TH True Milk', 'Hũ', 8000, 200, 'NCC002', 'SP002.jpg', 'Còn kinh doanh'),
-('SP003', N'Cà phê Nestlé 3in1', 'Gói', 2500, 500, 'NCC003', 'SP003.jpg', 'Còn kinh doanh'),
-('SP004', N'Nước ngọt Coca-Cola 330ml', 'Lon', 10000, 300, 'NCC004', 'SP004.jpg', 'Còn kinh doanh'),
-('SP005', N'Nước ngọt Pepsi 1.5L', 'Chai', 18000, 150, 'NCC005', 'SP005.jpg', 'Còn kinh doanh'),
-('SP006', N'Trà xanh C2 500ml', 'Chai', 9000, 250, 'NCC006', 'SP006.jpg', 'Còn kinh doanh'),
-('SP007', N'Bánh ChocoPie Orion', 'Hộp', 45000, 80, 'NCC007', 'SP007.jpg', 'Còn kinh doanh'),
-('SP008', N'Bánh quy Kinh Đô', 'Gói', 32000, 100, 'NCC008', 'SP008.jpg', 'Còn kinh doanh'),
-('SP009', N'Mì Hảo Hảo tôm chua cay', 'Gói', 4000, 500, 'NCC009', 'SP009.jpg', 'Còn kinh doanh'),
-('SP010', N'Nước mắm Nam Ngư', 'Chai', 28000, 90, 'NCC010', 'SP010.jpg', 'Còn kinh doanh'),
-('SP011', N'Bột ngọt Ajinomoto 454g', 'Gói', 22000, 150, 'NCC011', 'SP011.jpg', 'Còn kinh doanh'),
-('SP012', N'Xúc xích Vissan', 'Gói', 35000, 120, 'NCC012', 'SP012.jpg', 'Còn kinh doanh'),
-('SP013', N'Nước rửa chén Co.op Select', 'Chai', 27000, 80, 'NCC013', 'SP013.jpg', 'Còn kinh doanh'),
-('SP014', N'Kẹo dẻo Hải Hà', 'Gói', 15000, 60, 'NCC014', 'SP014.jpg', 'Còn kinh doanh'),
-('SP015', N'Dầu ăn Tường An 1L', 'Chai', 52000, 100, 'NCC015', 'SP015.jpg', 'Còn kinh doanh'),
-('SP016', N'Nước khoáng Lavie 500ml', 'Chai', 6000, 350, 'NCC016', 'SP016.jpg', 'Còn kinh doanh'),
-('SP017', N'Bánh mì sandwich Bibica', 'Gói', 22000, 100, 'NCC017', 'SP017.jpg', 'Còn kinh doanh'),
-('SP018', N'Bánh mì ABC đặc ruột', 'Ổ', 5000, 200, 'NCC018', 'SP018.jpg', 'Còn kinh doanh'),
-('SP019', N'Giấy vệ sinh Sài Gòn 10 cuộn', 'Lốc', 45000, 70, 'NCC019', 'SP019.jpg', 'Còn kinh doanh'),
-('SP020', N'Kem đánh răng Colgate 180g', 'Tuýp', 35000, 90, 'NCC020', 'SP020.jpg', 'Ngưng kinh doanh');
+('SP001', N'Sữa tươi Vinamilk 1L', N'Hộp', 29000, 120, 'NCC001', 'SP001.jpg', N'Còn kinh doanh'),
+('SP002', N'Sữa chua TH True Milk', N'Hũ', 8000, 200, 'NCC002', 'SP002.jpg', N'Còn kinh doanh'),
+('SP003', N'Cà phê Nestlé 3in1', N'Gói', 2500, 500, 'NCC003', 'SP003.jpg', N'Còn kinh doanh'),
+('SP004', N'Nước ngọt Coca-Cola 330ml', N'Lon', 10000, 300, 'NCC004', 'SP004.jpg', N'Còn kinh doanh'),
+('SP005', N'Nước ngọt Pepsi 1.5L', N'Chai', 18000, 150, 'NCC005', 'SP005.jpg', N'Còn kinh doanh'),
+('SP006', N'Trà xanh C2 500ml', N'Chai', 9000, 250, 'NCC006', 'SP006.jpg', N'Còn kinh doanh'),
+('SP007', N'Bánh ChocoPie Orion', N'Hộp', 45000, 80, 'NCC007', 'SP007.jpg', N'Còn kinh doanh'),
+('SP008', N'Bánh quy Kinh Đô', N'Gói', 32000, 100, 'NCC008', 'SP008.jpg', N'Còn kinh doanh'),
+('SP009', N'Mì Hảo Hảo tôm chua cay', N'Gói', 4000, 500, 'NCC009', 'SP009.jpg', N'Còn kinh doanh'),
+('SP010', N'Nước mắm Nam Ngư', N'Chai', 28000, 90, 'NCC010', 'SP010.jpg', N'Còn kinh doanh'),
+('SP011', N'Bột ngọt Ajinomoto 454g', N'Gói', 22000, 150, 'NCC011', 'SP011.jpg', N'Còn kinh doanh'),
+('SP012', N'Xúc xích Vissan', N'Gói', 35000, 120, 'NCC012', 'SP012.jpg', N'Còn kinh doanh'),
+('SP013', N'Nước rửa chén Co.op Select', N'Chai', 27000, 80, 'NCC013', 'SP013.jpg', N'Còn kinh doanh'),
+('SP014', N'Kẹo dẻo Hải Hà', N'Gói', 15000, 60, 'NCC014', 'SP014.jpg', N'Còn kinh doanh'),
+('SP015', N'Dầu ăn Tường An 1L', N'Chai', 52000, 100, 'NCC015', 'SP015.jpg', N'Còn kinh doanh'),
+('SP016', N'Nước khoáng Lavie 500ml', N'Chai', 6000, 350, 'NCC016', 'SP016.jpg', N'Còn kinh doanh'),
+('SP017', N'Bánh mì sandwich Bibica', N'Gói', 22000, 100, 'NCC017', 'SP017.jpg', N'Còn kinh doanh'),
+('SP018', N'Bánh mì ABC đặc ruột', N'Ổ', 5000, 200, 'NCC018', 'SP018.jpg', N'Còn kinh doanh'),
+('SP019', N'Giấy vệ sinh Sài Gòn 10 cuộn', N'Lốc', 45000, 70, 'NCC019', 'SP019.jpg', N'Còn kinh doanh'),
+('SP020', N'Kem đánh răng Colgate 180g', N'Tuýp', 35000, 90, 'NCC020', 'SP020.jpg', N'Ngưng kinh doanh');
 
 
 --Hóa Đơn
