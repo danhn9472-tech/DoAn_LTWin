@@ -106,7 +106,6 @@ namespace DoAn_LTWin
             }
             catch (Exception ex)
             {
-                // Log exception as appropriate; show minimal message to user
                 MessageBox.Show("Lỗi khi kết nối cơ sở dữ liệu.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

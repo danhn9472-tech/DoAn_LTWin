@@ -23,7 +23,7 @@ namespace DoAn_LTWin.Models
         [StringLength(100)]
         public string TenKH { get; set; }
 
-        public int? SDT { get; set; }
+        public string SDT { get; set; }
 
         [StringLength(100)]
         public string Email { get; set; }

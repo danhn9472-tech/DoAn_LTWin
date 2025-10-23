@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace DoAn_LTWin
 {
-    internal class UserSession
+    public static class UserSession
     {
+        public static string UserName { get; set; }
+        public static string Role { get; set; }
+        public static string UserId { get; set; }
+
+        public static void Clear()
+        {
+            UserName = null;
+            Role = null;
+            UserId = null;
+        }
     }
 }

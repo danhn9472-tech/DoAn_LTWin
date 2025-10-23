@@ -41,7 +41,7 @@
             this.txtSoluong = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtTongTien = new System.Windows.Forms.TextBox();
             this.txtGia = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -105,6 +105,7 @@
             this.cmbTenSP.Name = "cmbTenSP";
             this.cmbTenSP.Size = new System.Drawing.Size(164, 24);
             this.cmbTenSP.TabIndex = 4;
+            this.cmbTenSP.SelectedIndexChanged += new System.EventHandler(this.cmbTenSP_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -153,17 +154,17 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "ĐƠN GIÁ";
             // 
-            // textBox3
+            // txtTongTien
             // 
-            this.textBox3.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(720, 425);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.textBox3.Size = new System.Drawing.Size(273, 42);
-            this.textBox3.TabIndex = 11;
+            this.txtTongTien.Cursor = System.Windows.Forms.Cursors.Default;
+            this.txtTongTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTongTien.Location = new System.Drawing.Point(720, 425);
+            this.txtTongTien.Multiline = true;
+            this.txtTongTien.Name = "txtTongTien";
+            this.txtTongTien.ReadOnly = true;
+            this.txtTongTien.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtTongTien.Size = new System.Drawing.Size(273, 42);
+            this.txtTongTien.TabIndex = 11;
             // 
             // txtGia
             // 
@@ -186,6 +187,7 @@
             this.button1.TabIndex = 13;
             this.button1.Text = "    THÊM";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -213,6 +215,7 @@
             this.btnUpdate.TabIndex = 15;
             this.btnUpdate.Text = "     CẬP NHẬT";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // button4
             // 
@@ -249,7 +252,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtGia);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtTongTien);
             this.Controls.Add(this.txtSoluong);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
@@ -260,6 +263,7 @@
             this.Controls.Add(this.dgvBanHang);
             this.Name = "BanHang";
             this.Text = "BanHang";
+            this.Load += new System.EventHandler(this.BanHang_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBanHang)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picItem)).EndInit();
             this.ResumeLayout(false);
@@ -276,7 +280,7 @@
         private System.Windows.Forms.TextBox txtSoluong;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtTongTien;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;

@@ -52,6 +52,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnTim = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKH)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -93,7 +94,7 @@
             // 
             this.txtDiaChi.Location = new System.Drawing.Point(126, 193);
             this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.Size = new System.Drawing.Size(56, 20);
+            this.txtDiaChi.Size = new System.Drawing.Size(131, 20);
             this.txtDiaChi.TabIndex = 12;
             // 
             // label6
@@ -110,7 +111,7 @@
             // 
             this.txtSDT.Location = new System.Drawing.Point(126, 157);
             this.txtSDT.Name = "txtSDT";
-            this.txtSDT.Size = new System.Drawing.Size(80, 20);
+            this.txtSDT.Size = new System.Drawing.Size(110, 20);
             this.txtSDT.TabIndex = 10;
             // 
             // label5
@@ -127,7 +128,7 @@
             // 
             this.txtEmail.Location = new System.Drawing.Point(126, 122);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(56, 20);
+            this.txtEmail.Size = new System.Drawing.Size(131, 20);
             this.txtEmail.TabIndex = 8;
             // 
             // label4
@@ -189,6 +190,7 @@
             this.dgvKH.Name = "dgvKH";
             this.dgvKH.Size = new System.Drawing.Size(655, 350);
             this.dgvKH.TabIndex = 2;
+            this.dgvKH.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKH_CellContentClick);
             // 
             // Column1
             // 
@@ -217,6 +219,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnTim);
             this.groupBox2.Controls.Add(this.txtTimSDT);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Location = new System.Drawing.Point(25, 69);
@@ -256,6 +259,7 @@
             this.btnUpdate.TabIndex = 19;
             this.btnUpdate.Text = "     Cập nhật";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnAdd
             // 
@@ -269,6 +273,18 @@
             this.btnAdd.TabIndex = 18;
             this.btnAdd.Text = "     Thêm";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnTim
+            // 
+            this.btnTim.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTim.Location = new System.Drawing.Point(198, 21);
+            this.btnTim.Name = "btnTim";
+            this.btnTim.Size = new System.Drawing.Size(59, 32);
+            this.btnTim.TabIndex = 16;
+            this.btnTim.Text = "Tìm";
+            this.btnTim.UseVisualStyleBackColor = true;
+            this.btnTim.Click += new System.EventHandler(this.btnTim_Click);
             // 
             // KhachHang
             // 
@@ -284,6 +300,7 @@
             this.Controls.Add(this.label1);
             this.Name = "KhachHang";
             this.Text = "SanPham";
+            this.Load += new System.EventHandler(this.KhachHang_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKH)).EndInit();
@@ -319,5 +336,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnTim;
     }
 }

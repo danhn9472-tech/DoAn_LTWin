@@ -39,7 +39,7 @@
             this.btnLogOut = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblRole = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblName_NV = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -198,7 +198,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(78)))));
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.lblRole);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.lblName_NV);
             this.panel1.Controls.Add(this.label1);
@@ -220,16 +220,16 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // label2
+            // lblRole
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(305, 60);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 20);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "[Tên chức vụ]";
+            this.lblRole.AutoSize = true;
+            this.lblRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRole.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblRole.Location = new System.Drawing.Point(305, 60);
+            this.lblRole.Name = "lblRole";
+            this.lblRole.Size = new System.Drawing.Size(115, 20);
+            this.lblRole.TabIndex = 3;
+            this.lblRole.Text = "[Tên chức vụ]";
             // 
             // label3
             // 
@@ -322,7 +322,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblName_NV;
         private System.Windows.Forms.Label label1; 
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblRole;
         public System.Windows.Forms.Panel panelDesktop;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;

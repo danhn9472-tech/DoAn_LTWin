@@ -30,7 +30,7 @@ namespace DoAn_LTWin.Models
         [Column(TypeName = "date")]
         public DateTime? NgaySinh { get; set; }
 
-        public int? SDT { get; set; }
+        public string SDT { get; set; }
 
         [StringLength(100)]
         public string Email { get; set; }

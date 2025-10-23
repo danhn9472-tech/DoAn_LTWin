@@ -30,16 +30,16 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ThanhToan));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dtpNgayLap = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
-            this.txtTebNV = new System.Windows.Forms.TextBox();
+            this.txtTenNV = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txtMaHD = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtTongTien = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvSanPham = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,16 +59,16 @@
             this.btnXuatHD = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSanPham)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.dateTimePicker2);
+            this.groupBox2.Controls.Add(this.dtpNgayLap);
             this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.txtTebNV);
+            this.groupBox2.Controls.Add(this.txtTenNV);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.txtMaHD);
             this.groupBox2.Controls.Add(this.label14);
@@ -79,12 +79,12 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin hóa đơn";
             // 
-            // dateTimePicker2
+            // dtpNgayLap
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(109, 94);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(192, 20);
-            this.dateTimePicker2.TabIndex = 7;
+            this.dtpNgayLap.Location = new System.Drawing.Point(109, 94);
+            this.dtpNgayLap.Name = "dtpNgayLap";
+            this.dtpNgayLap.Size = new System.Drawing.Size(192, 20);
+            this.dtpNgayLap.TabIndex = 7;
             // 
             // label11
             // 
@@ -95,12 +95,12 @@
             this.label11.TabIndex = 6;
             this.label11.Text = "Ngày lập HĐ";
             // 
-            // txtTebNV
+            // txtTenNV
             // 
-            this.txtTebNV.Location = new System.Drawing.Point(109, 61);
-            this.txtTebNV.Name = "txtTebNV";
-            this.txtTebNV.Size = new System.Drawing.Size(192, 20);
-            this.txtTebNV.TabIndex = 3;
+            this.txtTenNV.Location = new System.Drawing.Point(109, 61);
+            this.txtTenNV.Name = "txtTenNV";
+            this.txtTenNV.Size = new System.Drawing.Size(192, 20);
+            this.txtTenNV.TabIndex = 3;
             // 
             // label13
             // 
@@ -131,7 +131,7 @@
             // 
             this.groupBox1.Controls.Add(this.txtTongTien);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Controls.Add(this.dgvSanPham);
             this.groupBox1.Location = new System.Drawing.Point(12, 162);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(971, 305);
@@ -156,20 +156,20 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Tổng tiền";
             // 
-            // dataGridView1
+            // dgvSanPham
             // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvSanPham.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSanPham.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvSanPham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSanPham.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3,
             this.Column4});
-            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(959, 250);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvSanPham.Location = new System.Drawing.Point(6, 19);
+            this.dgvSanPham.Name = "dgvSanPham";
+            this.dgvSanPham.Size = new System.Drawing.Size(959, 250);
+            this.dgvSanPham.TabIndex = 0;
             // 
             // Column1
             // 
@@ -289,6 +289,7 @@
             this.txtTienNhan.Name = "txtTienNhan";
             this.txtTienNhan.Size = new System.Drawing.Size(161, 20);
             this.txtTienNhan.TabIndex = 1;
+            this.txtTienNhan.TextChanged += new System.EventHandler(this.txtTienNhan_TextChanged);
             // 
             // label7
             // 
@@ -308,8 +309,9 @@
             this.btnXuatHD.Name = "btnXuatHD";
             this.btnXuatHD.Size = new System.Drawing.Size(216, 51);
             this.btnXuatHD.TabIndex = 20;
-            this.btnXuatHD.Text = "        XUẤT HÓA ĐƠN";
+            this.btnXuatHD.Text = "        LƯU HÓA ĐƠN";
             this.btnXuatHD.UseVisualStyleBackColor = true;
+            this.btnXuatHD.Click += new System.EventHandler(this.btnXuatHD_Click);
             // 
             // ThanhToan
             // 
@@ -323,11 +325,12 @@
             this.Controls.Add(this.groupBox2);
             this.Name = "ThanhToan";
             this.Text = "ThanhToan";
+            this.Load += new System.EventHandler(this.ThanhToan_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSanPham)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -339,14 +342,14 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dtpNgayLap;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtTebNV;
+        private System.Windows.Forms.TextBox txtTenNV;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtMaHD;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvSanPham;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTenKH;
