@@ -33,5 +33,10 @@ namespace DoAn_LTWin.Forms
         {
             menu.openChildForm1(new Forms.CT_PhieuNhap(menu), sender);
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

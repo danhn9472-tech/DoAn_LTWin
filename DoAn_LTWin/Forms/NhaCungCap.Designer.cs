@@ -44,17 +44,17 @@
             this.txtMaNV = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dgvNhanVien = new System.Windows.Forms.DataGridView();
+            this.dgvNCC = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnNhapSP = new System.Windows.Forms.Button();
+            this.btnQLSP = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvNhanVien)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNCC)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -200,7 +200,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dgvNhanVien);
+            this.groupBox1.Controls.Add(this.dgvNCC);
             this.groupBox1.Location = new System.Drawing.Point(12, 111);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(971, 304);
@@ -208,21 +208,21 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Danh sách nhà cung cấp";
             // 
-            // dgvNhanVien
+            // dgvNCC
             // 
-            this.dgvNhanVien.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvNhanVien.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvNhanVien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvNCC.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvNCC.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvNCC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvNCC.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column5,
             this.Column6,
             this.Column9});
-            this.dgvNhanVien.Location = new System.Drawing.Point(6, 19);
-            this.dgvNhanVien.Name = "dgvNhanVien";
-            this.dgvNhanVien.Size = new System.Drawing.Size(959, 277);
-            this.dgvNhanVien.TabIndex = 0;
+            this.dgvNCC.Location = new System.Drawing.Point(6, 19);
+            this.dgvNCC.Name = "dgvNCC";
+            this.dgvNCC.Size = new System.Drawing.Size(959, 277);
+            this.dgvNCC.TabIndex = 0;
             // 
             // Column1
             // 
@@ -249,42 +249,42 @@
             this.Column9.HeaderText = "Email";
             this.Column9.Name = "Column9";
             // 
-            // button1
+            // btnNhapSP
             // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(605, 426);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(179, 42);
-            this.button1.TabIndex = 20;
-            this.button1.Text = "   NHẬP SẢN PHẨM";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnNhapSP.BackColor = System.Drawing.Color.Transparent;
+            this.btnNhapSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNhapSP.Image = ((System.Drawing.Image)(resources.GetObject("btnNhapSP.Image")));
+            this.btnNhapSP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNhapSP.Location = new System.Drawing.Point(605, 426);
+            this.btnNhapSP.Name = "btnNhapSP";
+            this.btnNhapSP.Size = new System.Drawing.Size(179, 42);
+            this.btnNhapSP.TabIndex = 20;
+            this.btnNhapSP.Text = "   NHẬP SẢN PHẨM";
+            this.btnNhapSP.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNhapSP.UseVisualStyleBackColor = false;
+            this.btnNhapSP.Click += new System.EventHandler(this.btnNhapSP_Click);
             // 
-            // button4
+            // btnQLSP
             // 
-            this.button4.BackColor = System.Drawing.Color.Transparent;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(790, 425);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(187, 42);
-            this.button4.TabIndex = 19;
-            this.button4.Text = "     QL SẢN PHẨM";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnQLSP.BackColor = System.Drawing.Color.Transparent;
+            this.btnQLSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQLSP.Image = ((System.Drawing.Image)(resources.GetObject("btnQLSP.Image")));
+            this.btnQLSP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnQLSP.Location = new System.Drawing.Point(790, 425);
+            this.btnQLSP.Name = "btnQLSP";
+            this.btnQLSP.Size = new System.Drawing.Size(187, 42);
+            this.btnQLSP.TabIndex = 19;
+            this.btnQLSP.Text = "     QL SẢN PHẨM";
+            this.btnQLSP.UseVisualStyleBackColor = false;
+            this.btnQLSP.Click += new System.EventHandler(this.btnQLSP_Click);
             // 
             // NhaCungCap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(995, 479);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnNhapSP);
+            this.Controls.Add(this.btnQLSP);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "NhaCungCap";
@@ -292,7 +292,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvNhanVien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNCC)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -312,7 +312,7 @@
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dgvNhanVien;
+        private System.Windows.Forms.DataGridView dgvNCC;
         private System.Windows.Forms.TextBox txtTaiKhoan;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
@@ -320,7 +320,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnNhapSP;
+        private System.Windows.Forms.Button btnQLSP;
     }
 }

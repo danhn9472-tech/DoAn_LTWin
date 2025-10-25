@@ -317,6 +317,7 @@
             this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnUpdate
             // 
@@ -326,6 +327,7 @@
             this.btnUpdate.TabIndex = 4;
             this.btnUpdate.Text = "Cập nhật";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // checkbox1
             // 
@@ -336,6 +338,7 @@
             this.checkbox1.TabIndex = 6;
             this.checkbox1.Text = "Sản phẩm không còn kinh doanh";
             this.checkbox1.UseVisualStyleBackColor = true;
+            this.checkbox1.CheckedChanged += new System.EventHandler(this.checkbox1_CheckedChanged);
             // 
             // button4
             // 

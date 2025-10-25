@@ -42,19 +42,19 @@
             this.txtMaKH = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvKH = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnQLSanPham = new System.Windows.Forms.Button();
-            this.btnNCC = new System.Windows.Forms.Button();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.btnChiTiet = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnQLSanPham = new System.Windows.Forms.Button();
+            this.btnNCC = new System.Windows.Forms.Button();
+            this.btnChiTiet = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKH)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -192,6 +192,31 @@
             this.dgvKH.Size = new System.Drawing.Size(655, 350);
             this.dgvKH.TabIndex = 2;
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Mã phiếu nhập";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Tên nhà cung cấp";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Mã nhân viên";
+            this.Column3.Name = "Column3";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Ngày nhập";
+            this.Column5.Name = "Column5";
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Tổng tiền";
+            this.Column6.Name = "Column6";
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dateTimePicker2);
@@ -202,6 +227,13 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tìm kiếm phiếu nhập";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(112, 29);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(131, 20);
+            this.dateTimePicker2.TabIndex = 13;
             // 
             // label7
             // 
@@ -238,6 +270,7 @@
             this.btnAdd.TabIndex = 18;
             this.btnAdd.Text = "     Thêm";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnQLSanPham
             // 
@@ -268,13 +301,6 @@
             this.btnNCC.UseVisualStyleBackColor = false;
             this.btnNCC.Click += new System.EventHandler(this.btnNCC_Click);
             // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(112, 29);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(131, 20);
-            this.dateTimePicker2.TabIndex = 13;
-            // 
             // btnChiTiet
             // 
             this.btnChiTiet.BackColor = System.Drawing.Color.Transparent;
@@ -289,31 +315,6 @@
             this.btnChiTiet.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnChiTiet.UseVisualStyleBackColor = false;
             this.btnChiTiet.Click += new System.EventHandler(this.btnChiTiet_Click);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Mã phiếu nhập";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Tên nhà cung cấp";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Mã nhân viên";
-            this.Column3.Name = "Column3";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Ngày nhập";
-            this.Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Tổng tiền";
-            this.Column6.Name = "Column6";
             // 
             // NhapSanPham
             // 

@@ -26,7 +26,7 @@ CREATE TABLE NHANVIEN (
     NgaySinh    DATE,
     SDT         VARCHAR(13),
     Email       VARCHAR(100),
-    DiaChi      TEXT,
+    DiaChi      NVARCHAR(200),
     ChucVu      NVARCHAR(50),
     TaiKhoan    VARCHAR(50)  NOT NULL,
     MatKhau     VARCHAR(255) NOT NULL
@@ -40,7 +40,7 @@ CREATE TABLE KHACHHANG (
     TenKH   NVARCHAR(100) NOT NULL,
     SDT     VARCHAR(13),
     Email   VARCHAR(100),
-    DiaChi  TEXT
+    DiaChi  NVARCHAR(200)
 );
 
 
@@ -50,7 +50,7 @@ CREATE TABLE NHACUNGCAP (
     TenNCC  NVARCHAR(100) NOT NULL,
     SDT     VARCHAR(13),
     Email   VARCHAR(100),
-    DiaChi  TEXT
+    DiaChi  NVARCHAR(200)
 );
 
 

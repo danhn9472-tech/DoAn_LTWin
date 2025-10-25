@@ -108,5 +108,79 @@ namespace DoAn_LTWin.Forms
                 }
             }
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (txtTenSP.Text == "" || txtDonVi.Text == "" || txtGia.Text == "" || txtSoluong.Text == "" || cmbNCC.SelectedIndex == -1 || cmbTT.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin");
+                return;
+            }
+
+            int rowCheck = dgvSanPham.RowCount;
+            for (int i = 0; i < rowCheck - 1; i++)
+            {
+                if (dgvSanPham.Rows[i].Cells[0].Value.ToString() == txtMaSP.Text)
+                {
+                    MessageBox.Show("Mã sản phẩm đã tồn tại. Vui lòng sử dụng mã khác.");
+                    return;
+                }
+            }    
+
+            SANPHAM newSP = new SANPHAM
+            {
+                MaSP = txtMaSP.Text,
+                TenSP = txtTenSP.Text,
+                DonViTinh = txtDonVi.Text,
+                DonGia = decimal.Parse(txtGia.Text),
+                SoLuongTon = int.Parse(txtSoluong.Text),
+                MaNCC = cmbNCC.SelectedValue.ToString(),
+                TrangThai = cmbTT.SelectedItem.ToString()
+            };
+            MessageBox.Show("Thêm sản phẩm thành công!");
+            TapHoaContextDB context = new TapHoaContextDB();
+            List<SANPHAM> listSanPham = context.SANPHAMs.ToList();
+            context.SANPHAMs.Add(newSP);
+            context.SaveChanges();
+            BindGrid(listSanPham);
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            TapHoaContextDB context = new TapHoaContextDB();
+            List<SANPHAM> listSanPham = context.SANPHAMs.ToList();
+            int rowCheck = dgvSanPham.RowCount;
+            for(int i=0; i<rowCheck - 1; i++)
+            {
+                if(dgvSanPham.Rows[i].Cells[0].Value.ToString() == txtMaSP.Text)
+                {
+                    var spToUpdate = context.SANPHAMs.SingleOrDefault(sp => sp.MaSP == txtMaSP.Text);
+                    if (spToUpdate != null)
+                    {
+                        spToUpdate.TenSP = txtTenSP.Text;
+                        spToUpdate.DonViTinh = txtDonVi.Text;
+                        spToUpdate.DonGia = decimal.Parse(txtGia.Text);
+                        spToUpdate.SoLuongTon = int.Parse(txtSoluong.Text);
+                        spToUpdate.MaNCC = cmbNCC.SelectedValue.ToString();
+                        spToUpdate.TrangThai = cmbTT.SelectedItem.ToString();
+                        context.SaveChanges();
+                        BindGrid(listSanPham);
+                        MessageBox.Show("Cập nhật sản phẩm thành công!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không tìm thấy sản phẩm để cập nhật.");
+                    }
+                }
+            }
+        }
+
+        private void checkbox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkbox1.Checked)
+            {
+                
+            }
+        }
     }
 }

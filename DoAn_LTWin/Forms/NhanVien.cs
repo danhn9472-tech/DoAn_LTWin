@@ -127,7 +127,6 @@ namespace DoAn_LTWin.Forms
                     TaiKhoan = txtTaiKhoan.Text.Trim(),
                     MatKhau = txtPassword.Text.Trim()
                 };
-
                 context.NHANVIENs.Add(nv);
                 context.SaveChanges();
                 MessageBox.Show("Thêm nhân viên thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

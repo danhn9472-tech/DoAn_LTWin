@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DoAn_LTWin.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,16 +18,33 @@ namespace DoAn_LTWin.Forms
         {
             InitializeComponent();
             this.menu = main;
+            TapHoaContextDB context = new TapHoaContextDB();
+            List<NHACUNGCAP> listNCC = context.NHACUNGCAPs.ToList();
+            BindGrid(listNCC);
+        }
+        private void BindGrid(List<NHACUNGCAP> listNCC)
+        {
+            dgvNCC.Rows.Clear();
+            foreach (var item in listNCC)
+            {
+                int index = dgvNCC.Rows.Add();
+                dgvNCC.Rows[index].Cells[0].Value = item.MaNCC;
+                dgvNCC.Rows[index].Cells[1].Value = item.TenNCC;
+                dgvNCC.Rows[index].Cells[2].Value = item.DiaChi;
+                dgvNCC.Rows[index].Cells[3].Value = item.SDT;
+                dgvNCC.Rows[index].Cells[4].Value = item.Email;
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnNhapSP_Click(object sender, EventArgs e)
         {
             menu.openChildForm1(new Forms.NhapSanPham(menu), sender);
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btnQLSP_Click(object sender, EventArgs e)
         {
             menu.openChildForm1(new Forms.SanPham(menu), sender);
         }
+
     }
 }

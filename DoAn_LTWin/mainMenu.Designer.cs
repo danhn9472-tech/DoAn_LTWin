@@ -305,7 +305,6 @@
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "mainMenu";
             this.Text = "mainMenu";
             this.panelMenu.ResumeLayout(false);
