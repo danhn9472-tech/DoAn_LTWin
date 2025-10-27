@@ -46,5 +46,9 @@ namespace DoAn_LTWin.Forms
             menu.openChildForm1(new Forms.SanPham(menu), sender);
         }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
