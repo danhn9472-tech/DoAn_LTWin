@@ -26,6 +26,7 @@ namespace DoAn_LTWin.Forms
                 List<SANPHAM> listSanPham = context.SANPHAMs.ToList();
                 List<NHACUNGCAP> listNCC = context.NHACUNGCAPs.ToList();
                 FillNCCCombobox(listNCC);
+                FillTTCombobox();
                 BindGrid(listSanPham);
             }
             catch (Exception ex)
@@ -36,7 +37,12 @@ namespace DoAn_LTWin.Forms
 
         private void loadAnh( string avatarFileName)
         {
-            picSanPham.Image =Image.FromFile(Path.Combine(Application.StartupPath, "Images", avatarFileName.Trim() + ".jpg"));
+            string imgPath = Path.Combine(Path.Combine(Application.StartupPath, "Images", avatarFileName.Trim() + ".jpg"));
+            if (!string.IsNullOrEmpty(avatarFileName) && File.Exists(imgPath))
+            {
+                picSanPham.Image = Image.FromFile(imgPath);
+            }
+            else picSanPham.Image = Image.FromFile(Path.Combine(Application.StartupPath, "Images", "no_image.png")); ;
         }
 
         private void FillNCCCombobox(List<NHACUNGCAP> listNCC)
@@ -45,6 +51,12 @@ namespace DoAn_LTWin.Forms
             cmbNCC.DisplayMember = "TenNCC";
             cmbNCC.ValueMember = "MaNCC";
             cmbNCC.SelectedIndex = -1;
+        }
+        private void FillTTCombobox()
+        {
+            cmbTT.Items.Add("Kinh doanh");
+            cmbTT.Items.Add("Ngưng kinh doanh");
+            cmbTT.SelectedIndex = -1;
         }
         private void BindGrid(List<SANPHAM> listSanPham)
         {
@@ -83,9 +95,9 @@ namespace DoAn_LTWin.Forms
                 txtDonVi.Text = Convert.ToString(row.Cells[2].Value);
                 txtGia.Text = Convert.ToString(row.Cells[3].Value);
                 txtSoluong.Text = Convert.ToString(row.Cells[4].Value);
-                cmbNCC.Text = Convert.ToString(row.Cells[5].Value);
+                cmbNCC.SelectedValue = Convert.ToString(row.Cells[5].Value);
                 cmbTT.Text = Convert.ToString(row.Cells[6].Value);
-                loadAnh(txtMaSP.Text);
+                loadAnh(txtMaSP.Text);  
             }
         }
 
@@ -125,7 +137,16 @@ namespace DoAn_LTWin.Forms
                     MessageBox.Show("Mã sản phẩm đã tồn tại. Vui lòng sử dụng mã khác.");
                     return;
                 }
-            }    
+            }
+            //Lưu ảnh vào file Images
+            string imagesFolder = Path.Combine(Application.StartupPath, "Images");
+            if (!Directory.Exists(imagesFolder))
+            {
+                Directory.CreateDirectory(imagesFolder);
+            }
+            string fileName = $"{txtMaSP.Text}{Path.GetExtension(selectedImagePath)}";
+            string destPath = Path.Combine(imagesFolder, fileName);
+            File.Copy(selectedImagePath, destPath, true); // Ghi đè nếu trùng
 
             SANPHAM newSP = new SANPHAM
             {
@@ -135,7 +156,8 @@ namespace DoAn_LTWin.Forms
                 DonGia = decimal.Parse(txtGia.Text),
                 SoLuongTon = int.Parse(txtSoluong.Text),
                 MaNCC = cmbNCC.SelectedValue.ToString(),
-                TrangThai = cmbTT.SelectedItem.ToString()
+                TrangThai = cmbTT.SelectedItem.ToString(),
+                Avatar = fileName
             };
             MessageBox.Show("Thêm sản phẩm thành công!");
             TapHoaContextDB context = new TapHoaContextDB();
@@ -150,7 +172,15 @@ namespace DoAn_LTWin.Forms
             TapHoaContextDB context = new TapHoaContextDB();
             List<SANPHAM> listSanPham = context.SANPHAMs.ToList();
             int rowCheck = dgvSanPham.RowCount;
-            for(int i=0; i<rowCheck - 1; i++)
+            string imagesFolder = Path.Combine(Application.StartupPath, "Images");
+            if (!Directory.Exists(imagesFolder))
+            {
+                Directory.CreateDirectory(imagesFolder);
+            }
+            string fileName = $"{txtMaSP.Text}{Path.GetExtension(selectedImagePath)}";
+            string destPath = Path.Combine(imagesFolder, fileName);
+            File.Copy(selectedImagePath, destPath, true);
+            for (int i=0; i<rowCheck - 1; i++)
             {
                 if(dgvSanPham.Rows[i].Cells[0].Value.ToString() == txtMaSP.Text)
                 {
@@ -163,6 +193,7 @@ namespace DoAn_LTWin.Forms
                         spToUpdate.SoLuongTon = int.Parse(txtSoluong.Text);
                         spToUpdate.MaNCC = cmbNCC.SelectedValue.ToString();
                         spToUpdate.TrangThai = cmbTT.SelectedItem.ToString();
+                        spToUpdate.Avatar = fileName;
                         context.SaveChanges();
                         BindGrid(listSanPham);
                         MessageBox.Show("Cập nhật sản phẩm thành công!");
@@ -177,10 +208,17 @@ namespace DoAn_LTWin.Forms
 
         private void checkbox1_CheckedChanged(object sender, EventArgs e)
         {
+            TapHoaContextDB context = new TapHoaContextDB();
+            List<SANPHAM> listSanPham = context.SANPHAMs.ToList();
             if (checkbox1.Checked)
             {
-                
+                listSanPham = listSanPham.Where(sp => sp.TrangThai.Trim().ToLower() == "ngung kinh doanh").ToList();
             }
+            else
+            {
+                listSanPham = context.SANPHAMs.ToList();
+            }
+            BindGrid(listSanPham);
         }
     }
 }
