@@ -157,7 +157,7 @@ namespace DoAn_LTWin.Forms
             {
                 DataGridViewRow row = dgvPN.CurrentRow;
                 txtMaPN.Text = Convert.ToString(row.Cells[0].Value);
-                cmbNCC.SelectedValue = Convert.ToString(row.Cells[1].Value);
+                cmbNCC.SelectedValue = Convert.ToString(row.Cells[1].Value).Trim();
                 txtMaNV.Text = Convert.ToString(row.Cells[2].Value);
                 if (row.Cells[3].Value != null && row.Cells[3].Value != DBNull.Value)
                 {
@@ -175,7 +175,15 @@ namespace DoAn_LTWin.Forms
                 {
                     dtpPN.Value = DateTime.Now;
                 }
-                txtTongTien.Text = Convert.ToString(row.Cells[4].Value);
+                if (row.Cells[4].Value != null)
+                {
+                    decimal tongTien = Convert.ToDecimal(row.Cells[4].Value);
+                    txtTongTien.Text = tongTien.ToString("N0");
+                }
+                else
+                {
+                    txtTongTien.Text = "0,00";
+                }
             }
         }
     }

@@ -24,6 +24,7 @@ namespace DoAn_LTWin.Forms
             maPhieuNhap = MaPhieuNhap;
             txtMaPN.Text = maPhieuNhap;
             BindGrid(listCTPN);
+            tongTien();
         }
 
         private void BindGrid(List<CHITIETPHIEUNHAP> listCTPN)
@@ -62,7 +63,11 @@ namespace DoAn_LTWin.Forms
                 txtMaCTNhap.Text = Convert.ToString(row.Cells[1].Value);
                 txtMaSP.Text = Convert.ToString(row.Cells[2].Value);
                 txtSoluong.Text = Convert.ToString(row.Cells[3].Value);
-                txtDonGiaNhap.Text = Convert.ToString(row.Cells[4].Value);
+                if (row.Cells[4].Value != null)
+                {
+                    decimal donGia = Convert.ToDecimal(row.Cells[4].Value);
+                    txtDonGiaNhap.Text = donGia.ToString("N0");
+                }
             }
         }
 
@@ -83,6 +88,7 @@ namespace DoAn_LTWin.Forms
                 }
             }
             TapHoaContextDB context = new TapHoaContextDB();
+            SANPHAM sp = context.SANPHAMs.SingleOrDefault(s => s.MaSP == txtMaSP.Text);
             CHITIETPHIEUNHAP newCTPN = new CHITIETPHIEUNHAP
             {
                 MaCTPN = txtMaCTNhap.Text,
@@ -91,9 +97,11 @@ namespace DoAn_LTWin.Forms
                 SoLuong = int.Parse(txtSoluong.Text),
                 DonGiaNhap = decimal.Parse(txtDonGiaNhap.Text)
             };
+            sp.SoLuongTon += newCTPN.SoLuong ?? 0;
             context.CHITIETPHIEUNHAPs.Add(newCTPN);
             context.SaveChanges();
             BindGrid(context.CHITIETPHIEUNHAPs.ToList());
+            tongTien();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -105,12 +113,15 @@ namespace DoAn_LTWin.Forms
             {
                 if (dgvHangNhap.Rows[i].Cells[0].Value.ToString() == txtMaPN.Text)
                 {
-                    var spToUpdate = context.CHITIETPHIEUNHAPs.SingleOrDefault(pn => pn.MaCTPN == txtMaCTNhap.Text);
-                    if (spToUpdate != null)
+                    var pnToUpdate = context.CHITIETPHIEUNHAPs.SingleOrDefault(pn => pn.MaCTPN == txtMaCTNhap.Text);
+                    var spToUpdate = context.SANPHAMs.SingleOrDefault(sp => sp.MaSP == txtMaSP.Text);
+                    if (pnToUpdate != null)
                     {
-                        spToUpdate.MaSP = txtMaSP.Text;
-                        spToUpdate.SoLuong = int.Parse(txtSoluong.Text);
-                        spToUpdate.DonGiaNhap = decimal.Parse(txtDonGiaNhap.Text);
+                        pnToUpdate.MaSP = txtMaSP.Text;
+                        spToUpdate.SoLuongTon -= pnToUpdate.SoLuong ?? 0;
+                        pnToUpdate.SoLuong = int.Parse(txtSoluong.Text);
+                        spToUpdate.SoLuongTon += pnToUpdate.SoLuong ?? 0;
+                        pnToUpdate.DonGiaNhap = decimal.Parse(txtDonGiaNhap.Text);
                         context.SaveChanges();
                         BindGrid(listCTPN);
                         MessageBox.Show("Cập nhật phiếu nhập thành công!");
@@ -121,6 +132,7 @@ namespace DoAn_LTWin.Forms
                     }
                 }
             }
+            tongTien();
         }
 
         private void btnDel_Click(object sender, EventArgs e)
@@ -146,20 +158,19 @@ namespace DoAn_LTWin.Forms
                     {
                         var pnToDelete = context.CHITIETPHIEUNHAPs
                             .SingleOrDefault(pn => pn.MaCTPN == txtMaCTNhap.Text);
-
+                        var sptoDelete = context.SANPHAMs
+                            .SingleOrDefault(sp => sp.MaSP == txtMaSP.Text);
                         if (pnToDelete != null)
                         {
                             context.CHITIETPHIEUNHAPs.Remove(pnToDelete);
+                            sptoDelete.SoLuongTon -= pnToDelete.SoLuong;
                             context.SaveChanges();
-
-                            // Refresh grid
                             BindGrid(context.CHITIETPHIEUNHAPs.ToList());
-
-                            // Clear form
                             txtMaCTNhap.Clear();
                             txtMaSP.Clear();
                             txtSoluong.Clear();
                             txtDonGiaNhap.Clear();
+
                             MessageBox.Show("Xóa thành công!");
                         }
                         else
@@ -172,7 +183,32 @@ namespace DoAn_LTWin.Forms
                 {
                     MessageBox.Show("Lỗi khi xóa: " + ex.Message);
                 }
+                tongTien();
             }
+        }
+        private void tongTien()
+        {
+            decimal tongTien = 0;
+            foreach (DataGridViewRow row in dgvHangNhap.Rows)
+            {
+                if (row.Cells[4].Value != null && row.Cells[3].Value != null)
+                {
+                    decimal donGia = Convert.ToDecimal(row.Cells[4].Value);
+                    int soLuong = Convert.ToInt32(row.Cells[3].Value);
+                    tongTien += donGia * soLuong;
+                }
+            }
+            using (TapHoaContextDB context = new TapHoaContextDB())
+            {
+                var phieuNhap = context.PHIEUNHAPs.FirstOrDefault(p => p.MaPN == maPhieuNhap);
+                if (phieuNhap != null)
+                {
+                    phieuNhap.TongTien = tongTien;
+                    context.SaveChanges();
+                }
+            }
+            txtTongTien.Text = tongTien.ToString("N0") + " VNĐ";
+
         }
     }
 }
