@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -58,7 +59,12 @@ namespace DoAn_LTWin.Forms
 
         private void btnChiTiet_Click(object sender, EventArgs e)
         {
-            menu.openChildForm1(new Forms.CT_PhieuNhap(menu), sender);
+            if(txtMaPN.Text == "")
+            {
+                MessageBox.Show("Vui lòng chọn phiếu nhập để xem chi tiết");
+                return;
+            }
+            menu.openChildForm1(new Forms.CT_PhieuNhap(menu,txtMaPN.Text), sender);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -68,6 +74,7 @@ namespace DoAn_LTWin.Forms
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin");
                 return;
             }
+            TapHoaContextDB context = new TapHoaContextDB();
             PHIEUNHAP newPN = new PHIEUNHAP
             {
                 MaPN = txtMaPN.Text,
@@ -75,7 +82,11 @@ namespace DoAn_LTWin.Forms
                 MaNV = txtMaNV.Text,
                 NgayNhap = dtpPN.Value,
                 TongTien = 0
-            }; 
+            };
+            context.PHIEUNHAPs.Add(newPN);
+            context.SaveChanges();
+            BindGrid(context.PHIEUNHAPs.ToList());
+            MessageBox.Show("Thêm phiếu nhập thành công!");
         }
 
         private void NhapSanPham_Load(object sender, EventArgs e)
@@ -92,6 +103,7 @@ namespace DoAn_LTWin.Forms
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             BindGrid(new TapHoaContextDB().PHIEUNHAPs.ToList());
+            txtTongTien.Text = "0";
 
         }
 
@@ -99,10 +111,15 @@ namespace DoAn_LTWin.Forms
         {
             using (TapHoaContextDB context = new TapHoaContextDB())
             {
-                DateTime selectedDate = dtpPN.Value.Date; 
+                DateTime selectedDate = dtpTimKiem.Value.Date;
+                DateTime nextDay = selectedDate.AddDays(1);
+
                 List<PHIEUNHAP> listPN = context.PHIEUNHAPs
-                    .Where(p => p.NgayNhap.HasValue && p.NgayNhap.Value.Date == selectedDate)
+                    .Where(p => p.NgayNhap.HasValue &&
+                                p.NgayNhap.Value >= selectedDate &&
+                                p.NgayNhap.Value < nextDay)
                     .ToList();
+                BindGrid(listPN);
                 BindGrid(listPN);
             }
         }
@@ -142,7 +159,22 @@ namespace DoAn_LTWin.Forms
                 txtMaPN.Text = Convert.ToString(row.Cells[0].Value);
                 cmbNCC.SelectedValue = Convert.ToString(row.Cells[1].Value);
                 txtMaNV.Text = Convert.ToString(row.Cells[2].Value);
-                dtpPN.Value = Convert.ToDateTime(row.Cells[3].Value);
+                if (row.Cells[3].Value != null && row.Cells[3].Value != DBNull.Value)
+                {
+                    DateTime dateValue = Convert.ToDateTime(row.Cells[3].Value);
+                    if (dateValue >= dtpPN.MinDate && dateValue <= dtpPN.MaxDate)
+                    {
+                        dtpPN.Value = dateValue;
+                    }
+                    else
+                    {
+                        dtpPN.Value = DateTime.Now; // or set a default
+                    }
+                }
+                else
+                {
+                    dtpPN.Value = DateTime.Now;
+                }
                 txtTongTien.Text = Convert.ToString(row.Cells[4].Value);
             }
         }
