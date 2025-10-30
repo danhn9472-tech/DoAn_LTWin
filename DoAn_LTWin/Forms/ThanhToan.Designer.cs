@@ -32,7 +32,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dtpNgayLap = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
-            this.txtTenNV = new System.Windows.Forms.TextBox();
+            this.txtMaNV = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txtMaHD = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -69,14 +69,14 @@
             // 
             this.groupBox2.Controls.Add(this.dtpNgayLap);
             this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.txtTenNV);
+            this.groupBox2.Controls.Add(this.txtMaNV);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.txtMaHD);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Location = new System.Drawing.Point(16, 15);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(445, 177);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
@@ -85,7 +85,7 @@
             // dtpNgayLap
             // 
             this.dtpNgayLap.Location = new System.Drawing.Point(145, 116);
-            this.dtpNgayLap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpNgayLap.Margin = new System.Windows.Forms.Padding(4);
             this.dtpNgayLap.Name = "dtpNgayLap";
             this.dtpNgayLap.Size = new System.Drawing.Size(255, 22);
             this.dtpNgayLap.TabIndex = 7;
@@ -100,13 +100,14 @@
             this.label11.TabIndex = 6;
             this.label11.Text = "Ngày lập HĐ";
             // 
-            // txtTenNV
+            // txtMaNV
             // 
-            this.txtTenNV.Location = new System.Drawing.Point(145, 75);
-            this.txtTenNV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtTenNV.Name = "txtTenNV";
-            this.txtTenNV.Size = new System.Drawing.Size(255, 22);
-            this.txtTenNV.TabIndex = 3;
+            this.txtMaNV.Location = new System.Drawing.Point(145, 75);
+            this.txtMaNV.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMaNV.Name = "txtMaNV";
+            this.txtMaNV.ReadOnly = true;
+            this.txtMaNV.Size = new System.Drawing.Size(255, 22);
+            this.txtMaNV.TabIndex = 3;
             // 
             // label13
             // 
@@ -121,8 +122,9 @@
             // txtMaHD
             // 
             this.txtMaHD.Location = new System.Drawing.Point(145, 34);
-            this.txtMaHD.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMaHD.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaHD.Name = "txtMaHD";
+            this.txtMaHD.ReadOnly = true;
             this.txtMaHD.Size = new System.Drawing.Size(255, 22);
             this.txtMaHD.TabIndex = 1;
             // 
@@ -142,9 +144,9 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.dgvSanPham);
             this.groupBox1.Location = new System.Drawing.Point(16, 199);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(1295, 378);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
@@ -153,7 +155,7 @@
             // txtTongTien
             // 
             this.txtTongTien.Location = new System.Drawing.Point(1031, 351);
-            this.txtTongTien.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTongTien.Margin = new System.Windows.Forms.Padding(4);
             this.txtTongTien.Name = "txtTongTien";
             this.txtTongTien.ReadOnly = true;
             this.txtTongTien.Size = new System.Drawing.Size(255, 22);
@@ -180,7 +182,7 @@
             this.Column3,
             this.Column4});
             this.dgvSanPham.Location = new System.Drawing.Point(8, 23);
-            this.dgvSanPham.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvSanPham.Margin = new System.Windows.Forms.Padding(4);
             this.dgvSanPham.Name = "dgvSanPham";
             this.dgvSanPham.RowHeadersWidth = 51;
             this.dgvSanPham.Size = new System.Drawing.Size(1279, 308);
@@ -219,9 +221,9 @@
             this.groupBox3.Controls.Add(this.txtMaKH);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Location = new System.Drawing.Point(493, 15);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(373, 177);
             this.groupBox3.TabIndex = 18;
             this.groupBox3.TabStop = false;
@@ -230,7 +232,7 @@
             // txtSDT
             // 
             this.txtSDT.Location = new System.Drawing.Point(145, 119);
-            this.txtSDT.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSDT.Margin = new System.Windows.Forms.Padding(4);
             this.txtSDT.Name = "txtSDT";
             this.txtSDT.Size = new System.Drawing.Size(201, 22);
             this.txtSDT.TabIndex = 7;
@@ -248,8 +250,9 @@
             // txtTenKH
             // 
             this.txtTenKH.Location = new System.Drawing.Point(145, 75);
-            this.txtTenKH.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTenKH.Margin = new System.Windows.Forms.Padding(4);
             this.txtTenKH.Name = "txtTenKH";
+            this.txtTenKH.ReadOnly = true;
             this.txtTenKH.Size = new System.Drawing.Size(201, 22);
             this.txtTenKH.TabIndex = 3;
             // 
@@ -266,8 +269,9 @@
             // txtMaKH
             // 
             this.txtMaKH.Location = new System.Drawing.Point(145, 34);
-            this.txtMaKH.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMaKH.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaKH.Name = "txtMaKH";
+            this.txtMaKH.ReadOnly = true;
             this.txtMaKH.Size = new System.Drawing.Size(201, 22);
             this.txtMaKH.TabIndex = 1;
             // 
@@ -288,9 +292,9 @@
             this.groupBox4.Controls.Add(this.txtTienNhan);
             this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Location = new System.Drawing.Point(904, 15);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox4.Size = new System.Drawing.Size(399, 121);
             this.groupBox4.TabIndex = 19;
             this.groupBox4.TabStop = false;
@@ -299,8 +303,9 @@
             // txtTienThua
             // 
             this.txtTienThua.Location = new System.Drawing.Point(143, 71);
-            this.txtTienThua.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTienThua.Margin = new System.Windows.Forms.Padding(4);
             this.txtTienThua.Name = "txtTienThua";
+            this.txtTienThua.ReadOnly = true;
             this.txtTienThua.Size = new System.Drawing.Size(213, 22);
             this.txtTienThua.TabIndex = 3;
             // 
@@ -317,7 +322,7 @@
             // txtTienNhan
             // 
             this.txtTienNhan.Location = new System.Drawing.Point(143, 34);
-            this.txtTienNhan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTienNhan.Margin = new System.Windows.Forms.Padding(4);
             this.txtTienNhan.Name = "txtTienNhan";
             this.txtTienNhan.Size = new System.Drawing.Size(213, 22);
             this.txtTienNhan.TabIndex = 1;
@@ -339,7 +344,7 @@
             this.btnXuatHD.Image = ((System.Drawing.Image)(resources.GetObject("btnXuatHD.Image")));
             this.btnXuatHD.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnXuatHD.Location = new System.Drawing.Point(874, 144);
-            this.btnXuatHD.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnXuatHD.Margin = new System.Windows.Forms.Padding(4);
             this.btnXuatHD.Name = "btnXuatHD";
             this.btnXuatHD.Size = new System.Drawing.Size(254, 55);
             this.btnXuatHD.TabIndex = 20;
@@ -359,6 +364,7 @@
             this.button1.TabIndex = 21;
             this.button1.Text = "     Giỏ Hàng";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ThanhToan
             // 
@@ -371,7 +377,7 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ThanhToan";
             this.Text = "ThanhToan";
             this.Load += new System.EventHandler(this.ThanhToan_Load);
@@ -393,7 +399,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DateTimePicker dtpNgayLap;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtTenNV;
+        private System.Windows.Forms.TextBox txtMaNV;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtMaHD;
         private System.Windows.Forms.Label label14;

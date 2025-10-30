@@ -13,28 +13,77 @@ namespace DoAn_LTWin.Forms
 {
     public partial class ThanhToan : Form
     {
-        private List<SanPhamDaChon> danhSachSP;
-        private decimal tongTien;
-        public ThanhToan(List<SanPhamDaChon> dsSP, decimal tongTien)
+        public string maHD;
+        public decimal tongTienHD = 0;
+        private mainMenu menu;
+
+        public ThanhToan(mainMenu main)
         {
             InitializeComponent();
-            this.danhSachSP = dsSP;
-            this.tongTien = tongTien;
-            txtTenNV.Text = UserSession.UserId;
+            this.menu = main;
         }
 
         private void ThanhToan_Load(object sender, EventArgs e)
         {
-            dgvSanPham.DataSource = danhSachSP;
-            txtTongTien.Text = tongTien.ToString("N0");
+            // Chỉ tạo mã HD mới nếu chưa có
+            if (string.IsNullOrEmpty(maHD))
+            {
+                maHD = TaoMaHD();
+                txtMaHD.Text = maHD;
+            }
+            else
+            {
+                // Nếu đã có maHD (quay lại từ BanHang), load lại dữ liệu
+                txtMaHD.Text = maHD;
+                LoadChiTietHoaDon();
+            }
+
+            txtTongTien.Text = tongTienHD.ToString("N0") + " VNĐ";
             dtpNgayLap.Value = DateTime.Now;
+            txtMaNV.Text = UserSession.UserId;
+            dtpNgayLap.Format = DateTimePickerFormat.Custom;
+            dtpNgayLap.CustomFormat = "dd/MM/yyyy HH:mm:ss";
+            dtpNgayLap.ShowUpDown = true;
+        }
+
+        private void LoadChiTietHoaDon()
+        {
+            using (TapHoaContextDB context = new TapHoaContextDB())
+            {
+                List<CHITIETHOADON> dsSanPham = context.CHITIETHOADONs
+                    .Where(ct => ct.MaHD == maHD)
+                    .ToList();
+                BindGrid(dsSanPham);
+
+                // Cập nhật tổng tiền
+                var hd = context.HOADONs.FirstOrDefault(h => h.MaHD == maHD);
+                if (hd != null && hd.TongTien.HasValue)
+                {
+                    tongTienHD = hd.TongTien.Value;
+                }
+            }
+        }
+
+        private void BindGrid(List<CHITIETHOADON> dsSanPham)
+        {
+            TapHoaContextDB context = new TapHoaContextDB();
+            dgvSanPham.Rows.Clear();
+            foreach (var item in dsSanPham)
+            {
+                int index = dgvSanPham.Rows.Add();
+                dgvSanPham.Rows[index].Cells[0].Value = item.MaSP;
+                var sp = context.SANPHAMs.FirstOrDefault(s => s.MaSP == item.MaSP);
+                dgvSanPham.Rows[index].Cells[1].Value = sp?.TenSP;
+                dgvSanPham.Rows[index].Cells[2].Value = item.SoLuong;
+                dgvSanPham.Rows[index].Cells[3].Value = item.DonGia * item.SoLuong;
+            }
         }
 
         private void txtTienNhan_TextChanged(object sender, EventArgs e)
         {
             if (decimal.TryParse(txtTienNhan.Text, out decimal tienNhan))
             {
-                decimal tienThua = tienNhan - tongTien;
+                decimal tienThua = tienNhan - tongTienHD;
                 txtTienThua.Text = tienThua >= 0 ? tienThua.ToString("N0") : "0";
             }
             else
@@ -45,55 +94,13 @@ namespace DoAn_LTWin.Forms
 
         private void btnXuatHD_Click(object sender, EventArgs e)
         {
-            using (var context = new TapHoaContextDB())
-            {
-                // Lưu khách hàng
-                var kh = context.KHACHHANGs.Find(txtMaKH.Text);
-                if (kh == null)
-                {
-                    kh = new KHACHHANG
-                    {
-                        MaKH = txtMaKH.Text,
-                        TenKH = txtTenKH.Text,
-                        SDT = txtSDT.Text
-                    };
-                    context.KHACHHANGs.Add(kh);
-                }
-
-                // Lưu hóa đơn
-                var hd = new HOADON
-                {
-                    MaHD = TaoMaHD(),
-                    MaKH = txtMaKH.Text,
-                    NgayLap = dtpNgayLap.Value,
-                    TongTien = tongTien
-                };
-                context.HOADONs.Add(hd);
-
-                // Lưu chi tiết hóa đơn
-                foreach (var sp in danhSachSP)
-                {
-                    var ct = new CHITIETHOADON
-                    {
-                        MaCTHD = TaoMaCTHD(),
-                        MaHD = hd.MaHD,
-                        MaSP = sp.MaSP,
-                        SoLuong = sp.SoLuong,
-                        DonGia = sp.DonGia
-                    };
-                    context.CHITIETHOADONs.Add(ct);
-                }
-
-                context.SaveChanges();
-                MessageBox.Show("Lưu hóa đơn thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            
+            // Code xuất hóa đơn của bạn
         }
+
         private string TaoMaHD()
         {
             using (var context = new TapHoaContextDB())
             {
-                // Lấy mã hóa đơn cuối cùng
                 var maCuoi = context.HOADONs
                     .OrderByDescending(h => h.MaHD)
                     .Select(h => h.MaHD)
@@ -102,29 +109,31 @@ namespace DoAn_LTWin.Forms
                 if (string.IsNullOrEmpty(maCuoi))
                     return "HD001";
 
-                // Tách số từ mã cuối
                 int so = int.Parse(maCuoi.Substring(2));
-                return "HD" + (so + 1).ToString("D3");
+                return "HD" + (so + 1).ToString("D3").Trim();
             }
         }
-        private string TaoMaCTHD()
+
+        private void button1_Click(object sender, EventArgs e)
         {
-            using (var context = new TapHoaContextDB())
+            TapHoaContextDB context = new TapHoaContextDB();
+            var hd = context.HOADONs.FirstOrDefault(h => h.MaHD == maHD);
+
+            if (hd == null)
             {
-                var maCuoi = context.CHITIETHOADONs
-                    .OrderByDescending(ct => ct.MaCTHD)
-                    .Select(ct => ct.MaCTHD)
-                    .FirstOrDefault();
-
-                if (string.IsNullOrEmpty(maCuoi))
-                    return "CT001";
-
-                if (string.IsNullOrEmpty(maCuoi) || maCuoi.Length < 3 || !int.TryParse(maCuoi.Substring(2), out int so))
+                HOADON hoadon = new HOADON()
                 {
-                    return "CH001";
-                }
-                return "CH" + (so + 1).ToString("D3");
+                    MaHD = maHD,
+                    MaNV = txtMaNV.Text,
+                    NgayLap = dtpNgayLap.Value,
+                    TongTien = 0
+                };
+                context.HOADONs.Add(hoadon);
+                context.SaveChanges();
             }
+
+            // Truyền maHD vào BanHang
+            menu.openChildForm1(new Forms.BanHang(menu, maHD), sender);
         }
     }
 }

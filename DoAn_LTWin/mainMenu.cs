@@ -15,6 +15,7 @@ namespace DoAn_LTWin
     {
         private Button currentButton;
         public Form activeForm;
+        public Form formerForm;
         public mainMenu()
         {
             InitializeComponent();
@@ -89,7 +90,7 @@ namespace DoAn_LTWin
         }
         private void btnBanHang_Click(object sender, EventArgs e)
         {
-            openChildForm(new Forms.BanHang(this), sender);
+            openChildForm(new Forms.ThanhToan(this), sender);
         }
 
         private void btnSanPham_Click(object sender, EventArgs e)
