@@ -58,9 +58,9 @@ namespace DoAn_LTWin.Forms
                     int index = dgvBanHang.Rows.Add();
                     dgvBanHang.Rows[index].Cells[0].Value = item.MaSP;
                     var sp = context.SANPHAMs.FirstOrDefault(s => s.MaSP == item.MaSP);
-                    dgvBanHang.Rows[index].Cells[1].Value = sp?.TenSP;
+                    dgvBanHang.Rows[index].Cells[1].Value = sp.TenSP;
                     dgvBanHang.Rows[index].Cells[2].Value = item.SoLuong;
-                    dgvBanHang.Rows[index].Cells[3].Value = item.DonGia * item.SoLuong;
+                    dgvBanHang.Rows[index].Cells[3].Value = item.DonGia;
                 }
             }
         }
@@ -139,14 +139,8 @@ namespace DoAn_LTWin.Forms
             {
                 // Nếu form ThanhToan đã tồn tại, chỉ cần show lại
                 thanhToanForm.maHD = maHoaDon;
+                thanhToanForm.LoadChiTietHoaDon();
                 menu.openChildForm1(thanhToanForm, sender);
-            }
-            else
-            {
-                // Tạo mới và truyền maHD
-                var newThanhToan = new ThanhToan(menu);
-                newThanhToan.maHD = maHoaDon;
-                menu.openChildForm1(newThanhToan, sender);
             }
         }
 
@@ -157,8 +151,16 @@ namespace DoAn_LTWin.Forms
             {
                 if (row.Cells[3].Value != null)
                 {
-                    decimal thanhTien = Convert.ToDecimal(row.Cells[3].Value);
+                    decimal thanhTien = Convert.ToDecimal(row.Cells[3].Value) * Convert.ToDecimal(row.Cells[2].Value);
                     tongTien += thanhTien;
+                }
+                using(var context = new TapHoaContextDB())
+                {
+                    var sp = context.HOADONs.FirstOrDefault(s => s.MaHD == maHoaDon);
+                    if (sp != null)
+                    {
+                        sp.TongTien = tongTien;
+                    }
                 }
             }
 
@@ -197,10 +199,11 @@ namespace DoAn_LTWin.Forms
             }
 
             // Kiểm tra sản phẩm đã có trong giỏ hàng chưa
-            int rowCheck = dgvBanHang.RowCount;
-            for (int i = 0; i < rowCheck - 1; i++)
+            foreach (DataGridViewRow row in dgvBanHang.Rows)
             {
-                if (dgvBanHang.Rows[i].Cells[0].Value?.ToString() == txtMaSP.Text)
+                if (row.IsNewRow) continue;
+
+                if ((row.Cells[0].Value?.ToString().Trim() ?? "") == txtMaSP.Text.Trim())
                 {
                     MessageBox.Show("Sản phẩm đã có trong giỏ hàng. Vui lòng thêm sản phẩm khác.");
                     return;
@@ -231,7 +234,7 @@ namespace DoAn_LTWin.Forms
                     MaHD = maHoaDon,
                     MaSP = txtMaSP.Text,
                     SoLuong = soLuongMua,
-                    DonGia = sp.DonGia ?? 0
+                    DonGia = sp.DonGia
                 };
 
                 sp.SoLuongTon -= soLuongMua;

@@ -48,7 +48,6 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.picItem = new System.Windows.Forms.PictureBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.txtMaHD = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBanHang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picItem)).BeginInit();
@@ -68,7 +67,7 @@
             this.dgvBanHang.Margin = new System.Windows.Forms.Padding(4);
             this.dgvBanHang.Name = "dgvBanHang";
             this.dgvBanHang.RowHeadersWidth = 51;
-            this.dgvBanHang.Size = new System.Drawing.Size(1308, 319);
+            this.dgvBanHang.Size = new System.Drawing.Size(1295, 319);
             this.dgvBanHang.TabIndex = 2;
             this.dgvBanHang.SelectionChanged += new System.EventHandler(this.dgvBanHang_SelectionChanged);
             // 
@@ -180,7 +179,7 @@
             this.txtTongTien.Name = "txtTongTien";
             this.txtTongTien.ReadOnly = true;
             this.txtTongTien.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtTongTien.Size = new System.Drawing.Size(363, 51);
+            this.txtTongTien.Size = new System.Drawing.Size(351, 51);
             this.txtTongTien.TabIndex = 11;
             // 
             // txtGia
@@ -264,21 +263,10 @@
             this.picItem.TabIndex = 17;
             this.picItem.TabStop = false;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(17, 538);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(165, 29);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "MÃ HÓA ĐƠN";
-            // 
             // txtMaHD
             // 
             this.txtMaHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaHD.Location = new System.Drawing.Point(190, 539);
+            this.txtMaHD.Location = new System.Drawing.Point(196, 447);
             this.txtMaHD.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaHD.Name = "txtMaHD";
             this.txtMaHD.Size = new System.Drawing.Size(217, 26);
@@ -288,9 +276,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1327, 590);
-            this.Controls.Add(this.txtMaHD);
-            this.Controls.Add(this.label5);
+            this.ClientSize = new System.Drawing.Size(1323, 590);
             this.Controls.Add(this.picItem);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.btnUpdate);
@@ -306,6 +292,7 @@
             this.Controls.Add(this.cmbTenSP);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvBanHang);
+            this.Controls.Add(this.txtMaHD);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BanHang";
             this.Text = "BanHang";
@@ -337,7 +324,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtMaHD;
     }
 }

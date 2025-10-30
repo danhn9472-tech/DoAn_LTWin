@@ -31,12 +31,6 @@ namespace DoAn_LTWin.Forms
                 maHD = TaoMaHD();
                 txtMaHD.Text = maHD;
             }
-            else
-            {
-                // Nếu đã có maHD (quay lại từ BanHang), load lại dữ liệu
-                txtMaHD.Text = maHD;
-                LoadChiTietHoaDon();
-            }
 
             txtTongTien.Text = tongTienHD.ToString("N0") + " VNĐ";
             dtpNgayLap.Value = DateTime.Now;
@@ -46,36 +40,37 @@ namespace DoAn_LTWin.Forms
             dtpNgayLap.ShowUpDown = true;
         }
 
-        private void LoadChiTietHoaDon()
+        public void LoadChiTietHoaDon()
         {
             using (TapHoaContextDB context = new TapHoaContextDB())
             {
                 List<CHITIETHOADON> dsSanPham = context.CHITIETHOADONs
-                    .Where(ct => ct.MaHD == maHD)
+                    .Where(ct => ct.MaHD == txtMaHD.Text)
                     .ToList();
                 BindGrid(dsSanPham);
-
                 // Cập nhật tổng tiền
-                var hd = context.HOADONs.FirstOrDefault(h => h.MaHD == maHD);
-                if (hd != null && hd.TongTien.HasValue)
+                var hd = context.HOADONs.FirstOrDefault(h => h.MaHD == txtMaHD.Text);
+                if (hd != null)
                 {
-                    tongTienHD = hd.TongTien.Value;
+                    txtTongTien.Text = hd.TongTien.ToString("N0") + " VNĐ";
                 }
             }
         }
 
         private void BindGrid(List<CHITIETHOADON> dsSanPham)
         {
-            TapHoaContextDB context = new TapHoaContextDB();
-            dgvSanPham.Rows.Clear();
-            foreach (var item in dsSanPham)
+            using (TapHoaContextDB context = new TapHoaContextDB())
             {
-                int index = dgvSanPham.Rows.Add();
-                dgvSanPham.Rows[index].Cells[0].Value = item.MaSP;
-                var sp = context.SANPHAMs.FirstOrDefault(s => s.MaSP == item.MaSP);
-                dgvSanPham.Rows[index].Cells[1].Value = sp?.TenSP;
-                dgvSanPham.Rows[index].Cells[2].Value = item.SoLuong;
-                dgvSanPham.Rows[index].Cells[3].Value = item.DonGia * item.SoLuong;
+                dgvSanPham.Rows.Clear();
+                foreach (var item in dsSanPham)
+                {
+                    int index = dgvSanPham.Rows.Add();
+                    dgvSanPham.Rows[index].Cells[0].Value = item.MaSP;
+                    var sp = context.SANPHAMs.FirstOrDefault(s => s.MaSP == item.MaSP);
+                    dgvSanPham.Rows[index].Cells[1].Value = sp.TenSP;
+                    dgvSanPham.Rows[index].Cells[2].Value = item.SoLuong;
+                    dgvSanPham.Rows[index].Cells[3].Value = item.DonGia;
+                }
             }
         }
 
@@ -83,8 +78,15 @@ namespace DoAn_LTWin.Forms
         {
             if (decimal.TryParse(txtTienNhan.Text, out decimal tienNhan))
             {
-                decimal tienThua = tienNhan - tongTienHD;
-                txtTienThua.Text = tienThua >= 0 ? tienThua.ToString("N0") : "0";
+                using(var context = new TapHoaContextDB())
+                {
+                    var hd = context.HOADONs.FirstOrDefault(h => h.MaHD == maHD);
+                    if (hd != null)
+                    {
+                        decimal tienThua = tienNhan - hd.TongTien;
+                        txtTienThua.Text = tienThua >= 0 ? tienThua.ToString("N0") : "0";
+                    }
+                }
             }
             else
             {
@@ -96,7 +98,6 @@ namespace DoAn_LTWin.Forms
         {
             // Code xuất hóa đơn của bạn
         }
-
         private string TaoMaHD()
         {
             using (var context = new TapHoaContextDB())
@@ -132,8 +133,40 @@ namespace DoAn_LTWin.Forms
                 context.SaveChanges();
             }
 
-            // Truyền maHD vào BanHang
             menu.openChildForm1(new Forms.BanHang(menu, maHD), sender);
+        }
+
+        private void txtSDT_Enter(object sender, EventArgs e)
+        {
+            string sdt = txtSDT.Text.Trim();
+            if (sdt.Length < 6)
+            {
+                txtMaKH.Text = "";
+                txtTenKH.Text = "";
+                return;
+            }
+            using (var context = new TapHoaContextDB())
+            {
+                var kh = context.KHACHHANGs.FirstOrDefault(k => k.SDT == sdt);
+
+                if (kh != null)
+                {
+                    MessageBox.Show("Áp dụng giảm giá 3% cho hóa đơn.");
+                    txtMaKH.Text = kh.MaKH;
+                    txtTenKH.Text = kh.TenKH;
+                    var hd = context.HOADONs.FirstOrDefault(h => h.MaHD == maHD);
+                    hd.MaKH = kh.MaKH;
+                    hd.TongTien = hd.TongTien-hd.TongTien*0.03m;
+                    context.SaveChanges();
+                    txtTongTien.Text = hd.TongTien.ToString("N0") + " VNĐ";
+
+                }
+                else
+                {
+                    txtMaKH.Text = "";
+                    txtTenKH.Text = "";
+                }
+            }
         }
     }
 }

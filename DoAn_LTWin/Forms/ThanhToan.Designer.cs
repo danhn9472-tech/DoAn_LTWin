@@ -236,6 +236,7 @@
             this.txtSDT.Name = "txtSDT";
             this.txtSDT.Size = new System.Drawing.Size(201, 22);
             this.txtSDT.TabIndex = 7;
+            this.txtSDT.Enter += new System.EventHandler(this.txtSDT_Enter);
             // 
             // label1
             // 

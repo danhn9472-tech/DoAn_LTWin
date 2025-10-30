@@ -27,7 +27,7 @@ namespace DoAn_LTWin.Models
 
         public DateTime? NgayLap { get; set; }
 
-        public decimal? TongTien { get; set; }
+        public decimal TongTien { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETHOADON> CHITIETHOADONs { get; set; }

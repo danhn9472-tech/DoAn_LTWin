@@ -109,6 +109,5 @@ namespace DoAn_LTWin
                 MessageBox.Show("Lỗi khi kết nối cơ sở dữ liệu.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
     }
 }
