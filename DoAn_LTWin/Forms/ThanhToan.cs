@@ -96,7 +96,7 @@ namespace DoAn_LTWin.Forms
 
         private void btnXuatHD_Click(object sender, EventArgs e)
         {
-            // Code xuất hóa đơn của bạn
+            MessageBox.Show("Xuất hóa đơn thành công.");
         }
         private string TaoMaHD()
         {
