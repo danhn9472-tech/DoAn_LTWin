@@ -100,7 +100,7 @@ namespace DoAn_LTWin
 
         private void btnThongKe_Click(object sender, EventArgs e)
         {
-           // openChildForm(new Forms.ThongKe(), sender);
+            openChildForm(new Forms.ThongKe1(this), sender);
         }
 
         private void btnNhanVien_Click(object sender, EventArgs e)

@@ -96,7 +96,9 @@ namespace DoAn_LTWin.Forms
 
         private void btnXuatHD_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Xuất hóa đơn thành công.");
+            //rptForm rpt = new rptForm(txtMaHD.Text);
+            //rpt.ShowDialog();
+            MessageBox.Show("In hóa đơn thành công.");
         }
         private string TaoMaHD()
         {
